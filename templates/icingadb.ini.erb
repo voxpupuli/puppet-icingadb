@@ -1,0 +1,29 @@
+;this file is managed by puppet
+
+[redis]
+host="<%= @redis_host %>"
+<% if @redis_port -%>
+port="<%= @redis_port %>"
+<% end -%>
+<% if @redis_pool_size -%>
+pool_size="<%= @redis_pool_size %>"
+<% end -%>
+
+[<%= @db_type %>]
+host="<%= @db_host %>"
+<% if @db_port -%>
+port="<%= @db_port %>"
+<% end -%>
+database="<%= @db_name %>"
+user="<%= @db_username %>"
+password="<%= @db_password %>"
+<% if @db_max_open_conns -%>
+max_open_conns="<%= @db_max_open_conns %>"
+<% end -%>
+
+[logging]
+level="info"
+
+[metrics]
+#host="127.0.0.1"
+#port=8080
