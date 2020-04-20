@@ -5,10 +5,10 @@
 #
 class icingadb::redis::install {
 
+  contain ::icinga::redis
+
   $package_name   = $::icingadb::redis::globals::package_name
   $manage_package = $::icingadb::redis::manage_package
-
-  contain icinga::redis
 
   if $manage_package {
     contain ::icinga::redis

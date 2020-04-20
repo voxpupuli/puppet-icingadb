@@ -5,6 +5,6 @@
 #   
 class icingadb::install::pgsql {
 
-  fail('PostgreSQL is not support by IcingaDB, yet.')
+  fail('PostgreSQL is not supported by IcingaDB, yet.')
 
 }
