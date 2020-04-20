@@ -1,35 +1,50 @@
 # @summary
 #   Puppet class to manage IcingaDB.
 #
-# @param ensure
+# @param Enum['running','stopped'] ensure
+#   Choose wether the service is `running` or `stopped`. Defaults to `running`.
 #
 # @param [Boolean] enable
+#   Choose wether the service has to start at boot. Defaults to `true`.
 #
 # @param [Stdlib::Host] redis_host
+#   Redis server to connect. Defaults to `localhost`.
 #
 # @param [Stdlib::Port::Unprivileged] redis_port
+#   Port on the Redis host to connect. Defaults by IcingaDB to `6380`.
 #
 # @param [Integer[0]] redis_pool_size
+#   Maximum number of socket connections. Defaults by IcingaDB to `64`.
 #
-# @param db_type
+# @param [Enum['mysql','pgsql']] db_type
+#   Choose wether MySQL or PostgreSQL as backend for historical data. Defaults to `mysql`.
 #
 # @param [Stdlib::Host] db_host
+#   Database server. Defaults to `localhost`.
 #
 # @param [Stdlib::Port::Unprivileged] db_port
+#   Port to connect the DBMS. Defaults by IcingaDB to 3306 for MySQL or 5432 for PostgreSQL.
 #
 # @param [String] db_name
+#   The IcingaDB database. Defaults to `icingadb`.
 #
 # @param [String] db_username
+#   User that is used to connect the database. Defaults to `icingadb`.
 #
 # @param [String] db_password
+#   Passwort to login database.
 #
 # @param [Integer[0]] db_max_open_conns
+#   Maximum number of open connections. Defaults by IcingaDB to 50.
 #
 # @param [Boolean] import_db_schema
+#   Enables the initial creation of the database schema. Defaults to `false`.
 #
 # @param [Boolean] manage_repo
+#   Whether to involve the Icinga repositories. Defaults to `false`.
 #
 # @param [Boolean] manage_package
+#   Whether to manage the IcingaDB package. Defaults to `true`.
 #
 # @example
 #   class { 'icingadb':

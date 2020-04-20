@@ -2,9 +2,11 @@
   "name": "icinga-icingadb",
   "version": "0.1.0",
   "author": "Icinga Team",
-  "summary": "",
+  "summary": "Puppet module to manage IcingaDB and the IcingaDB Redis server",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "git://github.com/icinga/puppet-icingadb",
+  "project_page": "https://github.com/icinga/puppet-icingadb",
+  "issues_url": "https://github.com/icinga/puppet-icingadb/issues",
   "dependencies": [
 
   ],
@@ -12,18 +14,21 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
-        "7"
+        "7",
+        "8"
       ]
     },
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
+        "7",
         "8"
       ]
     },
@@ -36,7 +41,7 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9"
+        "10"
       ]
     },
     {
@@ -46,23 +51,20 @@
       ]
     },
     {
-      "operatingsystem": "SLES",
-      "operatingsystemrelease": [
-        "15"
-      ]
-    },
-    {
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
-        "29"
+        "31"
       ]
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.10.0 < 7.0.0"
+      "version_requirement": ">= 5.5.8 < 7.0.0"
     }
+  ],
+  "tags": [
+    "monitoring"
   ],
   "pdk-version": "1.17.0",
   "template-url": "pdk-default#1.17.0",
