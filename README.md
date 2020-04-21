@@ -34,7 +34,7 @@ And requiers:
 
 * [puppetlabs/stdlib] >= 4.16.0 < 7.0.0
     * If Puppet 6 is used a stdlib 5.1 or higher is required
-* [icinga/icinga] >= 0.1.1
+* [icinga/icinga] >= 0.1.2
 * [puppet/redis] >= 4.0.0
 
 ### Beginning with icingadb
