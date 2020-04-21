@@ -1,8 +1,6 @@
 # icingadb
 
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://puppet.com/pdk/latest/pdk_generating_modules.html .
-
-The README template below provides a starting point with details about what information to include in your README.
+![Icinga Logo](https://www.icinga.com/wp-content/uploads/2014/06/icinga_logo.png)
 
 #### Table of Contents
 
@@ -12,76 +10,131 @@ The README template below provides a starting point with details about what info
     * [Setup requirements](#setup-requirements)
     * [Beginning with icingadb](#beginning-with-icingadb)
 3. [Usage - Configuration options and additional functionality](#usage)
-4. [Limitations - OS compatibility, etc.](#limitations)
-5. [Development - Guide for contributing to the module](#development)
+4. [Reference](#reference)
+5. [Release notes](#release-notes)
 
 ## Description
 
-Briefly tell users why they might want to use your module. Explain what your module does and what kind of problems users can solve with it.
-
-This should be a fairly short description helps the user decide if your module is what they want.
+This module manages the IcingaDB Redis server and the IcingaDB itself.
 
 ## Setup
 
-### What icingadb affects **OPTIONAL**
+### What the IcingaDB Puppet module supports
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
+* 
+*
 
-If there's more that they should know about, though, this is the place to mention:
+### Setup Requirements
 
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
+This module supports:
 
-### Setup Requirements **OPTIONAL**
+* [puppet] >= 5.5.8 < 7.0.0
 
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
+And requiers:
 
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
+* [puppetlabs/stdlib] >= 4.16.0 < 7.0.0
+    * If Puppet 6 is used a stdlib 5.1 or higher is required
+* [icinga/icinga] >= 0.1.1
+* [puppet/redis] >= 4.0.0
 
 ### Beginning with icingadb
 
-The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
+Add this declaration to your Puppetfile:
+```
+mod 'icingadb',
+  :git => 'https://github.com/icinga/puppet-icingadb.git',
+  :tag => 'v0.1.0'
+```
+Then run:
+```
+bolt puppetfile install
+```
+
+Or do a `git clone` by hand into your modules directory:
+```
+git clone https://github.com/icinga/puppet-icingadb.bgit icinga
+```
+Change to `icingadb` directory and check out your desired version:
+```
+cd icingadb
+git checkout v0.1.0
+```
 
 ## Usage
 
-Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples. Include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem.
+### icingadb::redis
+
+```
+include ::icingadb::redis
+```
+
+```
+class { '::icinga::redis':
+  manage_repo  => true,
+  bind         => '127.0.0.1',
+  port         => 6381,
+}
+```
+
+### icingadb
+
+To store historical data IcingaDB uses a MySQL/MariaDB database. In the future also PostgreSQL support will be available.
+```
+include ::mysql::server
+```
+Note: If you’re using a version of MySQL < 5.7 or MariaDB < 10.2, the following server options must be set:
+```
+class { 'mysql::server':
+  override_options => {
+    mysqld => {
+      innodb_file_format    => 'barracuda',
+      innodb_file_per_table => 1,
+      innodb_large_prefix   => 1,
+    },
+  },
+}
+```
+The database declaration itself is in both case the same:
+```
+mysql::db { 'icingadb':
+  user     => 'icingadb',
+  password => 'supersecret',
+  host     => 'localhost',
+  grant    => [ 'ALL' ],
+}
+```
+By default only a database password has to be set. After a puppet run, IcingaDB is configures to connect a local MySQL/MariaDB and a local Redis server on port 6380. But no repository is involved. To do this, set `manage_repo` to `true` to use the class `icinga::repos` automatically. For more feature see [icinga](https://github.com/Icinga/puppet-icinga). 
+```
+class { '::icingadb':
+  manage_repo => true,
+  db_password => 'supersecret',
+}
+```
+In the last example the database will be connected but you've first to import the schema. This could by done by hand or you set `import_db_schema` to `true` like in the following example. There is also shown how a Redis server has to connect on a different port.
+```
+class { '::icingadb':
+  redis_host       => 'localhost',
+  redis_port       => 6381,
+  db_password      => 'supersecret',
+  import_db_schema => true,
+}
+```
+Also the needed database can located on a different host and port:
+```
+class { '::icingadb':
+  db_host     => 'mysql.example.de',
+  db_port     => 3309,
+  db_name     => 'icingadb',
+  db_username => 'icingadb',
+  db_password => 'supersecret',
+}
+```
+  
 
 ## Reference
 
-This section is deprecated. Instead, add reference information to your code as Puppet Strings comments, and then use Strings to generate a REFERENCE.md in your module. For details on how to add code comments and generate documentation with Strings, see the Puppet Strings [documentation](https://puppet.com/docs/puppet/latest/puppet_strings.html) and [style guide](https://puppet.com/docs/puppet/latest/puppet_strings_style.html)
+See [REFERENCE.md](https://github.com/Icinga/puppet-icingadb/blob/master/REFERENCE.md)
 
-If you aren't ready to use Strings yet, manually create a REFERENCE.md in the root of your module directory and list out each of your module's classes, defined types, facts, functions, Puppet tasks, task plans, and resource types and providers, along with the parameters for each.
+## Release Notes
 
-For each element (class, defined type, function, and so on), list:
-
-  * The data type, if applicable.
-  * A description of what the element does.
-  * Valid values, if the data type doesn't make it obvious.
-  * Default value, if any.
-
-For example:
-
-```
-### `pet::cat`
-
-#### Parameters
-
-##### `meow`
-
-Enables vocalization in your cat. Valid options: 'string'.
-
-Default: 'medium-loud'.
-```
-
-## Limitations
-
-In the Limitations section, list any incompatibilities, known issues, or other warnings.
-
-## Development
-
-In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
+This code is a very early release and may still be subject to significant changes.
