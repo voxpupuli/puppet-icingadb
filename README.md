@@ -52,7 +52,7 @@ bolt puppetfile install
 
 Or do a `git clone` by hand into your modules directory:
 ```
-git clone https://github.com/icinga/puppet-icingadb.bgit icinga
+git clone https://github.com/icinga/puppet-icingadb.git icingadb
 ```
 Change to `icingadb` directory and check out your desired version:
 ```
