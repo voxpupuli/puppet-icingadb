@@ -11,11 +11,8 @@ class icingadb::redis::install {
   $manage_package = $::icingadb::redis::manage_package
 
   if $manage_package {
-    contain ::icinga::redis
-
     package { $package_name:
       ensure => installed,
     }
   }
-
 }

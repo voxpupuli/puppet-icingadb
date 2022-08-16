@@ -1,30 +1,41 @@
 # @summary
 #   Manage the IcingaDB Redis server.
 #
-# @param [Enum['running','stopped']] ensure
-#   Choose wether the service is `running` or `stopped`. Defaults to `running`.
+# @param ensure
+#   Choose wether the service is `running` or `stopped`.
 #
-# @param [Boolean] ensure
-#   Choose wether the service has to start at boot. Defaults to `true`.
+# @param ensure
+#   Choose wether the service has to start at boot.
 #
-# @param [Array[Stdlib::Host]] bind
-#   Configure which IP address(es) to listen on. To bind on all interfaces, use an empty array.
-#   Defaults to `127.0.0.1` and `::1`.
+# @param bind
+#   Configure which IP address(es) to listen on. To bind on
+#   all interfaces, use an empty array.
 #
-# @param [Stdlib::Port::Unprivileged] port
-#   Configure which port to listen on. Defaults to `6380`.
+# @param port
+#   Configure which port to listen on.
 #
-# @param [Boolean] manage_repo
-#   Whether to involve the Icinga repositories. Defaults to `false`.
+# @param manage_repo
+#   Whether to involve the Icinga repositories.
 #
-# @param [Boolean] manage_package
-#   Whether to manage the IcingaDB package. Defaults to `true`.
+# @param manage_package
+#   Whether to manage the IcingaDB package.
+#
+# @param requirepass
+#   Require clients to issue AUTH <PASSWORD> before processing
+#   any other commands.
+#
+# @param config
+#   Other parameters that can be set, see redis::instance.
 #
 # @example
 #   class { '::icingadb::redis':
 #     manage_repo => true,
 #     bind        => '127.0.0.1',
 #     port        => 6380,
+#     config      => {
+#       tcp_keepalive => 400,
+#       databases     => 8,
+#     }
 #   }
 #
 class icingadb::redis(
@@ -32,8 +43,10 @@ class icingadb::redis(
   Boolean                                   $enable         = true,
   Variant[Stdlib::Host,Array[Stdlib::Host]] $bind           = [ '127.0.0.1', '::1' ],
   Stdlib::Port::Unprivileged                $port           = 6380,
+  Optional[String]                          $requirepass    = undef,
   Boolean                                   $manage_repo    = false,
   Boolean                                   $manage_package = true,
+  Hash[String,Any]                          $config         = {},
 ) {
 
   require ::icingadb::redis::globals

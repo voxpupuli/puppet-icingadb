@@ -1,0 +1,60 @@
+<%- | Enum['mysql', 'pgsql']                       $db_type,
+      Stdlib::Host                                 $db_host,
+      Optional[Stdlib::Port]                       $db_port = undef,
+      String                                       $db_name,
+      String                                       $db_username,
+      Variant[String, Sensitive[String]]           $db_password,
+      Stdlib::Host                                 $redis_host,
+      Optional[Stdlib::Port]                       $redis_port = undef,
+      Optional[Variant[String, Sensitive[String]]] $redis_password,
+      String                                       $logging_level,
+      Optional[String]                             $logging_output = undef,
+      String                                       $logging_interval,
+      Hash[String, String]                         $logging_options,
+      Optional[Integer[1]]                         $retention_history_data = undef,
+      Optional[Integer[1]]                         $retention_sla_data = undef,
+      Hash[String, Integer[1]]                     $retention_options,
+| -%>
+# This file is managed by Puppet. DO NOT EDIT.
+
+database:
+  type: <%= $db_type %>
+  host: <%= $db_host %>
+<% if $db_port { -%>
+  port: <%= $db_port %>
+<% } -%>
+  database: <%= $db_name %>
+  user: <%= $db_username %>
+  password: <%= $db_password %>
+
+redis:
+  host: <%= $redis_host %>
+<% if $redis_port { -%>
+  port: <%= $redis_port %>
+<% } -%>
+<% if $redis_password { -%>
+  password: <%= $redis_password %>
+<% } -%>
+
+logging:
+  level: <%= $logging_level %>
+<% if $logging_output { -%>
+  output: <%= $logging_output %>
+<% } -%>
+  interval: <%= $logging_interval %>
+  options:
+<% $logging_options.each |String $opt, String $val| { -%>
+    <%= $opt %>: <%= $val %>
+<% } -%>
+
+retention:
+<% if $retention_history_data { -%>
+  history-days: <%= $retention_history_data %>
+<% } -%>
+<% if $retention_sla_data { -%>
+  sla-days: <%= $retention_sla_data %>
+<% } -%>
+  options:
+<% $retention_options.each |String $opt, Integer[1] $val| { -%>
+    <%= $opt %>: <%= $val %>
+<% } -%>

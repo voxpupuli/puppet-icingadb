@@ -1,17 +1,19 @@
 # @summary
 #   This class loads the default parameters by doing a hiera lookup.
 #
-# @param [String] package_name
+# @param package_name
 #
-# @param [String] service_name
+# @param service_name
 #
-# @param [String] user
+# @param user
 #
-# @param [String] group
+# @param group
 #
-# @param [Stdlib::Absolutepath] conf_dir
+# @param conf_dir
 #
-# @param [Stdlib::Absolutepath] mysql_db_schema
+# @param mysql_db_schema
+#
+# @param mysql_db_schema
 #
 class icingadb::globals(
   String               $package_name,
@@ -20,5 +22,6 @@ class icingadb::globals(
   String               $group,
   Stdlib::Absolutepath $conf_dir,
   Stdlib::Absolutepath $mysql_db_schema,
+  Stdlib::Absolutepath $pgsql_db_schema,
 ) {
 }

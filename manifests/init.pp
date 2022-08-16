@@ -1,80 +1,115 @@
 # @summary
 #   Puppet class to manage IcingaDB.
 #
-# @param Enum['running','stopped'] ensure
-#   Choose wether the service is `running` or `stopped`. Defaults to `running`.
+# @param ensure
+#   Choose wether the service is `running` or `stopped`.
 #
-# @param [Boolean] enable
-#   Choose wether the service has to start at boot. Defaults to `true`.
+# @param enable
+#   Choose wether the service has to start at boot.
 #
-# @param [Stdlib::Host] redis_host
-#   Redis server to connect. Defaults to `localhost`.
+# @param manage_repos
+#   Whether to involve the Icinga repositories.
 #
-# @param [Stdlib::Port::Unprivileged] redis_port
-#   Port on the Redis host to connect. Defaults by IcingaDB to `6380`.
+# @param manage_package
+#   Whether to manage the IcingaDB package.
 #
-# @param [Integer[0]] redis_pool_size
-#   Maximum number of socket connections. Defaults by IcingaDB to `64`.
+# @param redis_host
+#   Redis server to connect.
 #
-# @param [Enum['mysql','pgsql']] db_type
-#   Choose wether MySQL or PostgreSQL as backend for historical data. Defaults to `mysql`.
+# @param redis_port
+#   Port on the Redis host to connect.
 #
-# @param [Stdlib::Host] db_host
-#   Database server. Defaults to `localhost`.
+# @param redis_password
+#   Passwort to login into redis.
 #
-# @param [Stdlib::Port::Unprivileged] db_port
-#   Port to connect the DBMS. Defaults by IcingaDB to 3306 for MySQL or 5432 for PostgreSQL.
+# @param db_type
+#   Choose wether MySQL or PostgreSQL as backend for historical data.
 #
-# @param [String] db_name
-#   The IcingaDB database. Defaults to `icingadb`.
+# @param db_host
+#   Database server.
 #
-# @param [String] db_username
-#   User that is used to connect the database. Defaults to `icingadb`.
+# @param db_port
+#   Port to connect the database.
 #
-# @param [String] db_password
-#   Passwort to login database.
+# @param db_name
+#   The IcingaDB database.
 #
-# @param [Integer[0]] db_max_open_conns
-#   Maximum number of open connections. Defaults by IcingaDB to 50.
+# @param db_username
+#   User that is used to connect the database.
 #
-# @param [Boolean] import_db_schema
-#   Enables the initial creation of the database schema. Defaults to `false`.
+# @param db_password
+#   Passwort to login into database.
 #
-# @param [Boolean] manage_repo
-#   Whether to involve the Icinga repositories. Defaults to `false`.
+# @param import_db_schema
+#   Enables the initial creation of the database schema.
 #
-# @param [Boolean] manage_package
-#   Whether to manage the IcingaDB package. Defaults to `true`.
+# @param logging_level
+#   Specifies the default logging level. Can be set to fatal, error, warn, info or debug.
+#
+# @param logging_output
+#   Configures the logging output. Can be set to console (stderr) or systemd-journald.
+#
+# @param logging_interval
+#   Interval for periodic logging defined as duration string.
+#
+# @param logging_options
+#   Map of component-logging level pairs to define a different log level than
+#   the default value for each component.
+#
+# @param retention_history_data
+#   Number of days to retain full historical data.
+#
+# @param retention_sla_data
+#   Number of days to retain historical data for SLA reporting.
+#
+# @param retention_options
+#   Map of history category to number of days to retain its data in order to
+#   enable retention only for specific categories or to override the number
+#   that has been configured in `retention_history_data`.
 #
 # @example
 #   class { 'icingadb':
-#     manage_repo      => true,
+#     manage_repos     => true,
+#     db_type          => 'pgsql',
 #     db_password      => 'supersecret',
 #     import_db_schema => true,
-#     require          => Mysql::Db['icingadb'],
 #   }
 #
 class icingadb(
-  String                               $db_password,
-  Enum['running','stopped']            $ensure            = 'running',
-  Boolean                              $enable            = true,
-  Stdlib::Host                         $redis_host        = 'localhost',
-  Optional[Stdlib::Port::Unprivileged] $redis_port        = undef,
-  Optional[Integer[0]]                 $redis_pool_size   = undef,
-  Enum['mysql','pgsql']                $db_type           = 'mysql',
-  Stdlib::Host                         $db_host           = 'localhost',
-  Optional[Stdlib::Port::Unprivileged] $db_port           = undef,
-  String                               $db_name           = 'icingadb',
-  String                               $db_username       = 'icingadb',
-  Optional[Integer[0]]                 $db_max_open_conns = undef,
-  Boolean                              $import_db_schema  = false,
-  Boolean                              $manage_repo       = false,
-  Boolean                              $manage_package    = true,
+  Variant[String, Sensitive[String]]             $db_password,
+  Enum['running','stopped']                      $ensure                 = 'running',
+  Boolean                                        $enable                 = true,
+  Boolean                                        $manage_repos           = false,
+  Boolean                                        $manage_package         = true,
+  Stdlib::Host                                   $redis_host             = 'localhost',
+  Optional[Stdlib::Port]                         $redis_port             = undef,
+  Optional[Variant[String, Sensitive[String]]]   $redis_password         = undef,
+  Enum['mysql','pgsql']                          $db_type                = 'mysql',
+  Stdlib::Host                                   $db_host                = 'localhost',
+  Optional[Stdlib::Port]                         $db_port                = undef,
+  String                                         $db_name                = 'icingadb',
+  String                                         $db_username            = 'icingadb',
+  Boolean                                        $import_db_schema       = false,
+  Enum['fatal','error','warn','info','debug']    $logging_level          = 'info',
+  Optional[Enum['console','systemd-journald']]   $logging_output         = undef,
+  Hash[Enum[
+    'config-sync','database','dump-signals',
+    'heartbeat','high-availability',
+    'history-sync','overdue-sync','redis',
+    'retention','runtime-updates','telemetry'
+  ],Enum['fatal','error','warn','info','debug']] $logging_options        = {},
+  Pattern[/^\d+\.?\d*[d|h|m|s]?$/]               $logging_interval       = '20s',
+  Optional[Integer[1]]                           $retention_history_data = undef,
+  Optional[Integer[1]]                           $retention_sla_data     = undef,
+  Hash[Enum[
+    'acknowledgement','comment','downtime',
+    'flapping','notification','state'
+  ],Integer[1]]                                $retention_options        = {},
 ) {
 
   require ::icingadb::globals
 
-  if $manage_repo {
+  if $manage_repos {
     require ::icinga::repos
   }
 
