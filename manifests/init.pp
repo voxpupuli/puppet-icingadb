@@ -1,6 +1,14 @@
 # @summary
 #   Puppet class to manage IcingaDB.
 #
+# @example
+#   class { 'icingadb':
+#     manage_repos  => true,
+#     db_type       => 'pgsql',
+#     db_password   => 'supersecret',
+#     import_schema => true,
+#   }
+#
 # @param ensure
 #   Choose wether the service is `running` or `stopped`.
 #
@@ -116,14 +124,6 @@
 #   Map of history category to number of days to retain its data in order to
 #   enable retention only for specific categories or to override the number
 #   that has been configured in `retention_history_data`.
-#
-# @example
-#   class { 'icingadb':
-#     manage_repos     => true,
-#     db_type          => 'pgsql',
-#     db_password      => 'supersecret',
-#     import_schema => true,
-#   }
 #
 class icingadb (
   Variant[String, Sensitive[String]]             $db_password,

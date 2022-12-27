@@ -7,7 +7,7 @@ postgresql::server::db { 'icingadb':
   password => 'supersecret',
 }
 
-postgresql::server::extension { "icingadb-citext":
+postgresql::server::extension { 'icingadb-citext':
   extension    => 'citext',
   database     => 'icingadb',
   package_name => 'postgresql-contrib',
