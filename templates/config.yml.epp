@@ -1,18 +1,28 @@
 <%- | Enum['mysql', 'pgsql']                       $db_type,
       Stdlib::Host                                 $db_host,
-      Optional[Stdlib::Port]                       $db_port = undef,
+      Optional[Stdlib::Port]                       $db_port                = undef,
       String                                       $db_name,
       String                                       $db_username,
       Variant[String, Sensitive[String]]           $db_password,
+      Optional[Boolean]                            $db_tls                 = undef,
+      Optional[String]                             $db_tls_cert            = undef,
+      Optional[String]                             $db_tls_key             = undef,
+      Optional[String]                             $db_tls_cacert          = undef,
+      Optional[Boolean]                            $db_tls_insecure        = undef,
       Stdlib::Host                                 $redis_host,
-      Optional[Stdlib::Port]                       $redis_port = undef,
-      Optional[Variant[String, Sensitive[String]]] $redis_password,
+      Optional[Stdlib::Port]                       $redis_port             = undef,
+      Optional[Variant[String, Sensitive[String]]] $redis_password         = undef,
+      Optional[Boolean]                            $redis_tls              = undef,
+      Optional[String]                             $redis_tls_cert         = undef,
+      Optional[String]                             $redis_tls_key          = undef,
+      Optional[String]                             $redis_tls_cacert       = undef,
+      Optional[Boolean]                            $redis_tls_insecure     = undef,
       String                                       $logging_level,
-      Optional[String]                             $logging_output = undef,
+      Optional[String]                             $logging_output         = undef,
       String                                       $logging_interval,
       Hash[String, String]                         $logging_options,
       Optional[Integer[1]]                         $retention_history_data = undef,
-      Optional[Integer[1]]                         $retention_sla_data = undef,
+      Optional[Integer[1]]                         $retention_sla_data     = undef,
       Hash[String, Integer[1]]                     $retention_options,
 | -%>
 # This file is managed by Puppet. DO NOT EDIT.
@@ -26,6 +36,21 @@ database:
   database: <%= $db_name %>
   user: <%= $db_username %>
   password: <%= $db_password %>
+<% if $db_tls { -%>
+  tls: <%= $db_tls %>
+<% if $db_tls_cert { -%>
+  cert: <%= $db_tls_cert %>
+<% } -%>
+<% if $db_tls_key { -%>
+  key: <%= $db_tls_key %>
+<% } -%>
+<% if $db_tls_cacert { -%>
+  ca: <%= $db_tls_cacert %>
+<% } -%>
+<% if $db_tls_insecure =~ Boolean { -%>
+  insecure: <%= $db_tls_insecure %>
+<% } -%>
+<% } -%>
 
 redis:
   host: <%= $redis_host %>
@@ -34,6 +59,21 @@ redis:
 <% } -%>
 <% if $redis_password { -%>
   password: <%= $redis_password %>
+<% } -%>
+<% if $redis_tls { -%>
+  tls: <%= $redis_tls %>
+<% if $redis_tls_cert { -%>
+  cert: <%= $redis_tls_cert %>
+<% } -%>
+<% if $redis_tls_key { -%>
+  key: <%= $redis_tls_key %>
+<% } -%>
+<% if $redis_tls_cacert { -%>
+  ca: <%= $redis_tls_cacert %>
+<% } -%>
+<% if $redis_tls_insecure =~ Boolean { -%>
+  insecure: <%= $redis_tls_insecure %>
+<% } -%>
 <% } -%>
 
 logging:

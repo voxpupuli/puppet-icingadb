@@ -1,10 +1,26 @@
-$password = Sensitive('icingadb')
+class { 'postgresql::server':
+  password_encryption => 'scram-sha-256',
+}
 
-class { 'icingadb':
-  manage_repos           => true,
-  db_type                => 'pgsql',
-  db_host                => '192.168.5.13',
-  db_password            => $password,
-  redis_password         => 'redis',
-  import_db_schema       => false,
+postgresql::server::db { 'icingadb':
+  user     => 'icingadb',
+  password => 'supersecret',
+}
+
+postgresql::server::extension { "icingadb-citext":
+  extension    => 'citext',
+  database     => 'icingadb',
+  package_name => 'postgresql-contrib',
+}
+
+-> class { 'icingadb::redis':
+  manage_repos => true,
+  requirepass  => Sensitive('supersecret'),
+}
+
+-> class { 'icingadb':
+  db_type        => 'pgsql',
+  db_password    => Sensitive('supersecret'),
+  redis_password => Sensitive('supersecret'),
+  import_schema  => true,
 }

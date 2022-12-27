@@ -8,25 +8,27 @@ describe 'icingadb::redis' do
       let(:facts) { os_facts }
 
       context 'with defaults' do
-        it { should_not contain_class('icinga::repos') }
-        it { should contain_class('icinga::redis') }
-        it { should contain_package('icingadb-redis') }
-        it { should contain_redis__instance('icingadb-redis').with('manage_service_file' => false) }
-        it { should contain_file('/usr/lib/systemd/system/icingadb-redis.service').with('owner' => 'root', 'group' => 'root', 'mode' => '0644') }
-        it { should contain_file('/usr/lib/systemd/system/icingadb-redis.service').with_content(/User=icinga-redis/) }
-        it { should contain_file('/usr/lib/systemd/system/icingadb-redis.service').with_content(/Group=icinga-redis/) }
-        it { should contain_file('/usr/lib/systemd/system/icingadb-redis.service').that_notifies('Exec[systemd-reload-redis]') }
-        it { should contain_service('icingadb-redis').with('ensure' => 'running', 'enable' => true) }
+        it { is_expected.not_to contain_class('icinga::repos') }
+        it { is_expected.to contain_class('icinga::redis') }
+        it { is_expected.to contain_package('icingadb-redis') }
+        it { is_expected.to contain_redis__instance('icingadb-redis').with('manage_service_file' => false) }
+        it { is_expected.to contain_service('icingadb-redis').with('ensure' => 'running', 'enable' => true) }
       end
 
       context 'with ensure => stopped, enable => false, manage_repo => true, manage_package => false' do
-        let(:params) { {:ensure => 'stopped', :enable => false, :manage_repo => true, :manage_package => false} }
+        let(:params) do
+          {
+            ensure: 'stopped',
+            enable: false,
+            manage_repos: true,
+            manage_packages: false,
+          }
+        end
 
-        it { should contain_class('icinga::repos') }
-        it { should_not contain_package('icingadb-redis') }
-        it { should contain_service('icingadb-redis').with('ensure' => 'stopped', 'enable' => false) }
+        it { is_expected.to contain_class('icinga::repos') }
+        it { is_expected.not_to contain_package('icingadb-redis') }
+        it { is_expected.to contain_service('icingadb-redis').with('ensure' => 'stopped', 'enable' => false) }
       end
-
     end
   end
 end

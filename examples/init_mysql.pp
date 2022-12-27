@@ -10,14 +10,19 @@ class { 'mysql::server':
 
 mysql::db { 'icingadb':
   user     => 'icingadb',
-  password => 'supersecret',
+  password => Sensitive('supersecret'),
   host     => 'localhost',
-  grant    => [ 'ALL' ],
+  grant    => ['ALL'],
+}
+
+class { 'icingadb::redis':
+  manage_repos => true,
+  requirepass  => Sensitive('supersecret'),
 }
 
 class { 'icingadb':
-  manage_repo      => true,
-  db_password      => 'supersecret',
-  import_db_schema => true,
-  require          => Mysql::Db['icingadb'],
+  db_password    => Sensitive('supersecret'),
+  redis_password => Sensitive('supersecret'),
+  import_schema  => true,
+  require        => [Class['icingadb::redis'], Mysql::Db['icingadb']],
 }

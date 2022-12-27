@@ -13,9 +13,9 @@
 #
 # @param mysql_db_schema
 #
-# @param mysql_db_schema
+# @param pgsql_db_schema
 #
-class icingadb::globals(
+class icingadb::globals (
   String               $package_name,
   String               $service_name,
   String               $user,

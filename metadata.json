@@ -1,6 +1,6 @@
 {
   "name": "icinga-icingadb",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Icinga Team",
   "summary": "Puppet module to manage IcingaDB and the IcingaDB Redis server",
   "license": "Apache-2.0",
@@ -10,20 +10,24 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 5.0.0 < 7.0.0"
+      "version_requirement": ">= 5.1.0 < 9.0.0"
     },
     {
       "name": "icinga/icinga",
-      "version_requirement": ">= 0.1.2 < 2.0.0"
-    },
-    {
-      "name": "puppet/redis",
-      "version_requirement": ">= 4.0.0 < 9.0.0"
+      "version_requirement": ">= 2.9.0 < 4.0.0"
     }
   ],
   "operatingsystem_support": [
     {
       "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7",
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
         "7",
         "8"
@@ -33,38 +37,46 @@
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "7",
-        "8"
+        "8",
+        "9"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "7"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "10"
+        "10",
+        "11"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "18.04"
+        "20.04",
+        "22.04"
       ]
     },
     {
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
-        "31"
+        "35",
+        "36",
+        "37"
       ]
     }
   ],
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 5.5.8 < 7.0.0"
+      "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ],
-  "tags": [
-    "monitoring"
-  ],
-  "pdk-version": "1.17.0",
-  "template-url": "pdk-default#1.17.0",
-  "template-ref": "tags/1.17.0-0-gd3a4319"
+  "pdk-version": "2.5.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#2.5.0",
+  "template-ref": "tags/2.5.0-0-g369d483"
 }

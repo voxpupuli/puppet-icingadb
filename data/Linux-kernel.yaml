@@ -16,4 +16,3 @@ icingadb::redis::globals::conf_dir: /etc/icingadb-redis
 icingadb::redis::globals::work_dir: /var/lib/icingadb-redis
 icingadb::redis::globals::run_dir: /var/run/icingadb-redis
 icingadb::redis::globals::log_dir: /var/log/icingadb-redis
-icingadb::redis::globals::service_unit_file: /usr/lib/systemd/system/icingadb-redis.service

@@ -4,13 +4,14 @@
 # @api private
 #
 class icingadb::redis::install {
+  assert_private()
 
-  contain ::icinga::redis
+  contain icinga::redis
 
-  $package_name   = $::icingadb::redis::globals::package_name
-  $manage_package = $::icingadb::redis::manage_package
+  $package_name    = $icingadb::redis::globals::package_name
+  $manage_packages = $icingadb::redis::manage_packages
 
-  if $manage_package {
+  if $manage_packages {
     package { $package_name:
       ensure => installed,
     }
