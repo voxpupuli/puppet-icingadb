@@ -1,6 +1,6 @@
 {
   "name": "icinga-icingadb",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Icinga Team",
   "summary": "Puppet module to manage IcingaDB and the IcingaDB Redis server",
   "license": "Apache-2.0",

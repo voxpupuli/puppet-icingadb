@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.0.1](https://github.com/icinga/puppet-icingadb/tree/v1.0.1) (2023-07-20)
+[Full Changelog](https://github.com/icinga/puppet-icingadb/compare/v1.0.0...v1.0.1)
+
+**Fixed bugs:**
+
+- Duplicate declaration of Icinga::Cert\[icingadb tls files for the database client connect\] [\#8](https://github.com/Icinga/puppet-icingadb/issues/8)
+
 ## [v1.0.0](https://github.com/icinga/puppet-icingadb/tree/v1.0.0) (2022-12-27)
 [Full Changelog](https://github.com/icinga/puppet-icingadb/compare/v0.1.0...v1.0.0)
 
