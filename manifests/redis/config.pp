@@ -26,7 +26,7 @@ class icingadb::redis::config {
       $icingadb::redis::tls_cacert,
     )
 
-    icinga::cert { 'icingadb tls files for the database client connect':
+    icinga::cert { 'icingadb-redis tls files for the database client connect':
       owner => $user,
       group => $group,
       args  => $tls_files,
