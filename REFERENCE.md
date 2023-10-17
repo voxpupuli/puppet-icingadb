@@ -9,9 +9,9 @@
 #### Public Classes
 
 * [`icingadb`](#icingadb): Puppet class to manage IcingaDB.
-* [`icingadb::globals`](#icingadbglobals): This class loads the default parameters by doing a hiera lookup.
-* [`icingadb::redis`](#icingadbredis): Manage the IcingaDB Redis server.
-* [`icingadb::redis::globals`](#icingadbredisglobals): This class loads the default parameters by doing a hiera lookup.
+* [`icingadb::globals`](#icingadb--globals): This class loads the default parameters by doing a hiera lookup.
+* [`icingadb::redis`](#icingadb--redis): Manage the IcingaDB Redis server.
+* [`icingadb::redis::globals`](#icingadb--redis--globals): This class loads the default parameters by doing a hiera lookup.
 
 #### Private Classes
 
@@ -47,45 +47,45 @@ class { 'icingadb':
 
 The following parameters are available in the `icingadb` class:
 
-* [`ensure`](#ensure)
-* [`enable`](#enable)
-* [`manage_repos`](#manage_repos)
-* [`manage_packages`](#manage_packages)
-* [`redis_host`](#redis_host)
-* [`redis_port`](#redis_port)
-* [`redis_password`](#redis_password)
-* [`redis_use_tls`](#redis_use_tls)
-* [`redis_tls_insecure`](#redis_tls_insecure)
-* [`redis_tls_cert`](#redis_tls_cert)
-* [`redis_tls_cert_file`](#redis_tls_cert_file)
-* [`redis_tls_key`](#redis_tls_key)
-* [`redis_tls_key_file`](#redis_tls_key_file)
-* [`redis_tls_cacert`](#redis_tls_cacert)
-* [`redis_tls_cacert_file`](#redis_tls_cacert_file)
-* [`db_type`](#db_type)
-* [`db_host`](#db_host)
-* [`db_port`](#db_port)
-* [`db_name`](#db_name)
-* [`db_username`](#db_username)
-* [`db_password`](#db_password)
-* [`import_schema`](#import_schema)
-* [`db_use_tls`](#db_use_tls)
-* [`db_tls_insecure`](#db_tls_insecure)
-* [`db_tls_cert`](#db_tls_cert)
-* [`db_tls_cert_file`](#db_tls_cert_file)
-* [`db_tls_key`](#db_tls_key)
-* [`db_tls_key_file`](#db_tls_key_file)
-* [`db_tls_cacert`](#db_tls_cacert)
-* [`db_tls_cacert_file`](#db_tls_cacert_file)
-* [`logging_level`](#logging_level)
-* [`logging_output`](#logging_output)
-* [`logging_interval`](#logging_interval)
-* [`logging_options`](#logging_options)
-* [`retention_history_data`](#retention_history_data)
-* [`retention_sla_data`](#retention_sla_data)
-* [`retention_options`](#retention_options)
+* [`ensure`](#-icingadb--ensure)
+* [`enable`](#-icingadb--enable)
+* [`manage_repos`](#-icingadb--manage_repos)
+* [`manage_packages`](#-icingadb--manage_packages)
+* [`redis_host`](#-icingadb--redis_host)
+* [`redis_port`](#-icingadb--redis_port)
+* [`redis_password`](#-icingadb--redis_password)
+* [`redis_use_tls`](#-icingadb--redis_use_tls)
+* [`redis_tls_insecure`](#-icingadb--redis_tls_insecure)
+* [`redis_tls_cert`](#-icingadb--redis_tls_cert)
+* [`redis_tls_cert_file`](#-icingadb--redis_tls_cert_file)
+* [`redis_tls_key`](#-icingadb--redis_tls_key)
+* [`redis_tls_key_file`](#-icingadb--redis_tls_key_file)
+* [`redis_tls_cacert`](#-icingadb--redis_tls_cacert)
+* [`redis_tls_cacert_file`](#-icingadb--redis_tls_cacert_file)
+* [`db_type`](#-icingadb--db_type)
+* [`db_host`](#-icingadb--db_host)
+* [`db_port`](#-icingadb--db_port)
+* [`db_name`](#-icingadb--db_name)
+* [`db_username`](#-icingadb--db_username)
+* [`db_password`](#-icingadb--db_password)
+* [`import_schema`](#-icingadb--import_schema)
+* [`db_use_tls`](#-icingadb--db_use_tls)
+* [`db_tls_insecure`](#-icingadb--db_tls_insecure)
+* [`db_tls_cert`](#-icingadb--db_tls_cert)
+* [`db_tls_cert_file`](#-icingadb--db_tls_cert_file)
+* [`db_tls_key`](#-icingadb--db_tls_key)
+* [`db_tls_key_file`](#-icingadb--db_tls_key_file)
+* [`db_tls_cacert`](#-icingadb--db_tls_cacert)
+* [`db_tls_cacert_file`](#-icingadb--db_tls_cacert_file)
+* [`logging_level`](#-icingadb--logging_level)
+* [`logging_output`](#-icingadb--logging_output)
+* [`logging_interval`](#-icingadb--logging_interval)
+* [`logging_options`](#-icingadb--logging_options)
+* [`retention_history_data`](#-icingadb--retention_history_data)
+* [`retention_sla_data`](#-icingadb--retention_sla_data)
+* [`retention_options`](#-icingadb--retention_options)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-icingadb--ensure"></a>`ensure`
 
 Data type: `Enum['running', 'stopped']`
 
@@ -93,31 +93,31 @@ Choose wether the service is `running` or `stopped`.
 
 Default value: `'running'`
 
-##### <a name="enable"></a>`enable`
+##### <a name="-icingadb--enable"></a>`enable`
 
 Data type: `Boolean`
 
 Choose wether the service has to start at boot.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="manage_repos"></a>`manage_repos`
+##### <a name="-icingadb--manage_repos"></a>`manage_repos`
 
 Data type: `Boolean`
 
 Whether to involve the Icinga repositories.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="manage_packages"></a>`manage_packages`
+##### <a name="-icingadb--manage_packages"></a>`manage_packages`
 
 Data type: `Boolean`
 
 Whether to manage the IcingaDB packages.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="redis_host"></a>`redis_host`
+##### <a name="-icingadb--redis_host"></a>`redis_host`
 
 Data type: `Stdlib::Host`
 
@@ -125,7 +125,7 @@ Redis server to connect.
 
 Default value: `'localhost'`
 
-##### <a name="redis_port"></a>`redis_port`
+##### <a name="-icingadb--redis_port"></a>`redis_port`
 
 Data type: `Stdlib::Port`
 
@@ -133,79 +133,79 @@ Port on the Redis host to connect.
 
 Default value: `6380`
 
-##### <a name="redis_password"></a>`redis_password`
+##### <a name="-icingadb--redis_password"></a>`redis_password`
 
 Data type: `Optional[Variant[String, Sensitive[String]]]`
 
 Passwort to login into redis.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="redis_use_tls"></a>`redis_use_tls`
+##### <a name="-icingadb--redis_use_tls"></a>`redis_use_tls`
 
 Data type: `Optional[Boolean]`
 
 Wether or not to enable tls encryption to connect the database.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="redis_tls_insecure"></a>`redis_tls_insecure`
+##### <a name="-icingadb--redis_tls_insecure"></a>`redis_tls_insecure`
 
 Data type: `Optional[Boolean]`
 
 Disable the server certificate validation. Only valid if `redis_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="redis_tls_cert"></a>`redis_tls_cert`
+##### <a name="-icingadb--redis_tls_cert"></a>`redis_tls_cert`
 
 Data type: `Optional[String]`
 
 Client certificate in PEM format. Only valid if `redis_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="redis_tls_cert_file"></a>`redis_tls_cert_file`
+##### <a name="-icingadb--redis_tls_cert_file"></a>`redis_tls_cert_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the client certificate. Only valid if `redis_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="redis_tls_key"></a>`redis_tls_key`
+##### <a name="-icingadb--redis_tls_key"></a>`redis_tls_key`
 
 Data type: `Optional[Variant[String, Sensitive[String]]]`
 
 Client private key in PEM format. Only valid if `redis_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="redis_tls_key_file"></a>`redis_tls_key_file`
+##### <a name="-icingadb--redis_tls_key_file"></a>`redis_tls_key_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the client private key. Only valid if `redis_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="redis_tls_cacert"></a>`redis_tls_cacert`
+##### <a name="-icingadb--redis_tls_cacert"></a>`redis_tls_cacert`
 
 Data type: `Optional[String]`
 
 CA root certificate in PEM format. Only valid if `redis_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="redis_tls_cacert_file"></a>`redis_tls_cacert_file`
+##### <a name="-icingadb--redis_tls_cacert_file"></a>`redis_tls_cacert_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the CA root certificate. Only valid if `redis_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_type"></a>`db_type`
+##### <a name="-icingadb--db_type"></a>`db_type`
 
 Data type: `Enum['mysql','pgsql']`
 
@@ -213,7 +213,7 @@ Choose wether MySQL or PostgreSQL as backend for historical data.
 
 Default value: `'mysql'`
 
-##### <a name="db_host"></a>`db_host`
+##### <a name="-icingadb--db_host"></a>`db_host`
 
 Data type: `Stdlib::Host`
 
@@ -221,15 +221,15 @@ Database server.
 
 Default value: `'localhost'`
 
-##### <a name="db_port"></a>`db_port`
+##### <a name="-icingadb--db_port"></a>`db_port`
 
 Data type: `Optional[Stdlib::Port]`
 
 Port to connect the database.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_name"></a>`db_name`
+##### <a name="-icingadb--db_name"></a>`db_name`
 
 Data type: `String`
 
@@ -237,7 +237,7 @@ The IcingaDB database.
 
 Default value: `'icingadb'`
 
-##### <a name="db_username"></a>`db_username`
+##### <a name="-icingadb--db_username"></a>`db_username`
 
 Data type: `String`
 
@@ -245,13 +245,13 @@ User that is used to connect the database.
 
 Default value: `'icingadb'`
 
-##### <a name="db_password"></a>`db_password`
+##### <a name="-icingadb--db_password"></a>`db_password`
 
 Data type: `Variant[String, Sensitive[String]]`
 
 Passwort to login into database.
 
-##### <a name="import_schema"></a>`import_schema`
+##### <a name="-icingadb--import_schema"></a>`import_schema`
 
 Data type: `Variant[Boolean, Enum['mariadb', 'mysql']]`
 
@@ -259,73 +259,73 @@ Whether or not to import the databse schema or not. Options `mariadb` and `mysql
 both means true. With mariadb its cli options are used for the import,
 whereas with mysql its different options.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="db_use_tls"></a>`db_use_tls`
+##### <a name="-icingadb--db_use_tls"></a>`db_use_tls`
 
 Data type: `Optional[Boolean]`
 
 Wether or not to enable tls encryption to connect the database.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_tls_insecure"></a>`db_tls_insecure`
+##### <a name="-icingadb--db_tls_insecure"></a>`db_tls_insecure`
 
 Data type: `Optional[Boolean]`
 
 Disable the server certificate validation. Only valid if `db_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_tls_cert"></a>`db_tls_cert`
+##### <a name="-icingadb--db_tls_cert"></a>`db_tls_cert`
 
 Data type: `Optional[String]`
 
 Client certificate in PEM format. Only valid if `db_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_tls_cert_file"></a>`db_tls_cert_file`
+##### <a name="-icingadb--db_tls_cert_file"></a>`db_tls_cert_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the client certificate. Only valid if `db_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_tls_key"></a>`db_tls_key`
+##### <a name="-icingadb--db_tls_key"></a>`db_tls_key`
 
 Data type: `Optional[Variant[String, Sensitive[String]]]`
 
 Client private key in PEM format. Only valid if `db_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_tls_key_file"></a>`db_tls_key_file`
+##### <a name="-icingadb--db_tls_key_file"></a>`db_tls_key_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the client private key. Only valid if `db_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_tls_cacert"></a>`db_tls_cacert`
+##### <a name="-icingadb--db_tls_cacert"></a>`db_tls_cacert`
 
 Data type: `Optional[String]`
 
 CA root certificate in PEM format. Only valid if `db_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="db_tls_cacert_file"></a>`db_tls_cacert_file`
+##### <a name="-icingadb--db_tls_cacert_file"></a>`db_tls_cacert_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the CA root certificate. Only valid if `db_use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="logging_level"></a>`logging_level`
+##### <a name="-icingadb--logging_level"></a>`logging_level`
 
 Data type: `Enum['fatal','error','warn','info','debug']`
 
@@ -333,15 +333,15 @@ Specifies the default logging level. Can be set to fatal, error, warn, info or d
 
 Default value: `'info'`
 
-##### <a name="logging_output"></a>`logging_output`
+##### <a name="-icingadb--logging_output"></a>`logging_output`
 
 Data type: `Optional[Enum['console','systemd-journald']]`
 
 Configures the logging output. Can be set to console (stderr) or systemd-journald.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="logging_interval"></a>`logging_interval`
+##### <a name="-icingadb--logging_interval"></a>`logging_interval`
 
 Data type: `Pattern[/^\d+\.?\d*[d|h|m|s]?$/]`
 
@@ -349,42 +349,50 @@ Interval for periodic logging defined as duration string.
 
 Default value: `'20s'`
 
-##### <a name="logging_options"></a>`logging_options`
+##### <a name="-icingadb--logging_options"></a>`logging_options`
 
-Data type: `Hash[Enum[
+Data type:
+
+```puppet
+Hash[Enum[
       'config-sync','database','dump-signals',
       'heartbeat','high-availability',
       'history-sync','overdue-sync','redis',
       'retention','runtime-updates','telemetry'
-  ],Enum['fatal','error','warn','info','debug']]`
+  ],Enum['fatal','error','warn','info','debug']]
+```
 
 Map of component-logging level pairs to define a different log level than
 the default value for each component.
 
 Default value: `{}`
 
-##### <a name="retention_history_data"></a>`retention_history_data`
+##### <a name="-icingadb--retention_history_data"></a>`retention_history_data`
 
 Data type: `Optional[Integer[1]]`
 
 Number of days to retain full historical data.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="retention_sla_data"></a>`retention_sla_data`
+##### <a name="-icingadb--retention_sla_data"></a>`retention_sla_data`
 
 Data type: `Optional[Integer[1]]`
 
 Number of days to retain historical data for SLA reporting.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="retention_options"></a>`retention_options`
+##### <a name="-icingadb--retention_options"></a>`retention_options`
 
-Data type: `Hash[Enum[
+Data type:
+
+```puppet
+Hash[Enum[
       'acknowledgement','comment','downtime',
       'flapping','notification','state'
-  ], Integer[1]]`
+  ], Integer[1]]
+```
 
 Map of history category to number of days to retain its data in order to
 enable retention only for specific categories or to override the number
@@ -392,7 +400,7 @@ that has been configured in `retention_history_data`.
 
 Default value: `{}`
 
-### <a name="icingadbglobals"></a>`icingadb::globals`
+### <a name="icingadb--globals"></a>`icingadb::globals`
 
 This class loads the default parameters by doing a hiera lookup.
 
@@ -400,57 +408,57 @@ This class loads the default parameters by doing a hiera lookup.
 
 The following parameters are available in the `icingadb::globals` class:
 
-* [`package_name`](#package_name)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`group`](#group)
-* [`conf_dir`](#conf_dir)
-* [`mysql_db_schema`](#mysql_db_schema)
-* [`pgsql_db_schema`](#pgsql_db_schema)
+* [`package_name`](#-icingadb--globals--package_name)
+* [`service_name`](#-icingadb--globals--service_name)
+* [`user`](#-icingadb--globals--user)
+* [`group`](#-icingadb--globals--group)
+* [`conf_dir`](#-icingadb--globals--conf_dir)
+* [`mysql_db_schema`](#-icingadb--globals--mysql_db_schema)
+* [`pgsql_db_schema`](#-icingadb--globals--pgsql_db_schema)
 
-##### <a name="package_name"></a>`package_name`
-
-Data type: `String`
-
-
-
-##### <a name="service_name"></a>`service_name`
+##### <a name="-icingadb--globals--package_name"></a>`package_name`
 
 Data type: `String`
 
 
 
-##### <a name="user"></a>`user`
+##### <a name="-icingadb--globals--service_name"></a>`service_name`
 
 Data type: `String`
 
 
 
-##### <a name="group"></a>`group`
+##### <a name="-icingadb--globals--user"></a>`user`
 
 Data type: `String`
 
 
 
-##### <a name="conf_dir"></a>`conf_dir`
+##### <a name="-icingadb--globals--group"></a>`group`
+
+Data type: `String`
+
+
+
+##### <a name="-icingadb--globals--conf_dir"></a>`conf_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="mysql_db_schema"></a>`mysql_db_schema`
+##### <a name="-icingadb--globals--mysql_db_schema"></a>`mysql_db_schema`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="pgsql_db_schema"></a>`pgsql_db_schema`
+##### <a name="-icingadb--globals--pgsql_db_schema"></a>`pgsql_db_schema`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-### <a name="icingadbredis"></a>`icingadb::redis`
+### <a name="icingadb--redis"></a>`icingadb::redis`
 
 Manage the IcingaDB Redis server.
 
@@ -502,25 +510,25 @@ class { 'icingadb::redis':
 
 The following parameters are available in the `icingadb::redis` class:
 
-* [`ensure`](#ensure)
-* [`enable`](#enable)
-* [`bind`](#bind)
-* [`port`](#port)
-* [`manage_repos`](#manage_repos)
-* [`manage_packages`](#manage_packages)
-* [`requirepass`](#requirepass)
-* [`use_tls`](#use_tls)
-* [`tls_port`](#tls_port)
-* [`tls_cert`](#tls_cert)
-* [`tls_key`](#tls_key)
-* [`tls_cacert`](#tls_cacert)
-* [`tls_cert_file`](#tls_cert_file)
-* [`tls_key_file`](#tls_key_file)
-* [`tls_cacert_file`](#tls_cacert_file)
-* [`tls_auth_clients`](#tls_auth_clients)
-* [`config`](#config)
+* [`ensure`](#-icingadb--redis--ensure)
+* [`enable`](#-icingadb--redis--enable)
+* [`bind`](#-icingadb--redis--bind)
+* [`port`](#-icingadb--redis--port)
+* [`manage_repos`](#-icingadb--redis--manage_repos)
+* [`manage_packages`](#-icingadb--redis--manage_packages)
+* [`requirepass`](#-icingadb--redis--requirepass)
+* [`use_tls`](#-icingadb--redis--use_tls)
+* [`tls_port`](#-icingadb--redis--tls_port)
+* [`tls_cert`](#-icingadb--redis--tls_cert)
+* [`tls_key`](#-icingadb--redis--tls_key)
+* [`tls_cacert`](#-icingadb--redis--tls_cacert)
+* [`tls_cert_file`](#-icingadb--redis--tls_cert_file)
+* [`tls_key_file`](#-icingadb--redis--tls_key_file)
+* [`tls_cacert_file`](#-icingadb--redis--tls_cacert_file)
+* [`tls_auth_clients`](#-icingadb--redis--tls_auth_clients)
+* [`config`](#-icingadb--redis--config)
 
-##### <a name="ensure"></a>`ensure`
+##### <a name="-icingadb--redis--ensure"></a>`ensure`
 
 Data type: `Enum['running','stopped']`
 
@@ -528,15 +536,15 @@ Choose wether the service is `running` or `stopped`.
 
 Default value: `'running'`
 
-##### <a name="enable"></a>`enable`
+##### <a name="-icingadb--redis--enable"></a>`enable`
 
 Data type: `Boolean`
 
 Choose wether the service has to start at boot.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="bind"></a>`bind`
+##### <a name="-icingadb--redis--bind"></a>`bind`
 
 Data type: `Variant[Stdlib::Host,Array[Stdlib::Host]]`
 
@@ -545,7 +553,7 @@ all interfaces, use an empty array.
 
 Default value: `['127.0.0.1', '::1']`
 
-##### <a name="port"></a>`port`
+##### <a name="-icingadb--redis--port"></a>`port`
 
 Data type: `Stdlib::Port`
 
@@ -553,40 +561,40 @@ Configure which port to listen on.
 
 Default value: `6380`
 
-##### <a name="manage_repos"></a>`manage_repos`
+##### <a name="-icingadb--redis--manage_repos"></a>`manage_repos`
 
 Data type: `Boolean`
 
 Whether to involve the Icinga repositories.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="manage_packages"></a>`manage_packages`
+##### <a name="-icingadb--redis--manage_packages"></a>`manage_packages`
 
 Data type: `Boolean`
 
 Whether or not to manage the IcingaDB packages.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="requirepass"></a>`requirepass`
+##### <a name="-icingadb--redis--requirepass"></a>`requirepass`
 
 Data type: `Optional[Variant[String, Sensitive[String]]]`
 
 Require clients to issue AUTH <PASSWORD> before processing
 any other commands.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="use_tls"></a>`use_tls`
+##### <a name="-icingadb--redis--use_tls"></a>`use_tls`
 
 Data type: `Optional[Boolean]`
 
 Wether or not to enable tls encryption.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_port"></a>`tls_port`
+##### <a name="-icingadb--redis--tls_port"></a>`tls_port`
 
 Data type: `Stdlib::Port`
 
@@ -594,64 +602,64 @@ Configure which port to listen on for tls encrypted connection. Only valid if `u
 
 Default value: `6381`
 
-##### <a name="tls_cert"></a>`tls_cert`
+##### <a name="-icingadb--redis--tls_cert"></a>`tls_cert`
 
 Data type: `Optional[String]`
 
 Certificate in PEM format. Only valid if `use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_key"></a>`tls_key`
+##### <a name="-icingadb--redis--tls_key"></a>`tls_key`
 
 Data type: `Optional[Variant[String, Sensitive[String]]]`
 
 Private key in PEM format. Only valid if `use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_cacert"></a>`tls_cacert`
+##### <a name="-icingadb--redis--tls_cacert"></a>`tls_cacert`
 
 Data type: `Optional[String]`
 
 The CA root certificate in PEM format. Only valid if `use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_cert_file"></a>`tls_cert_file`
+##### <a name="-icingadb--redis--tls_cert_file"></a>`tls_cert_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the certificate file. Only valid if `use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_key_file"></a>`tls_key_file`
+##### <a name="-icingadb--redis--tls_key_file"></a>`tls_key_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the private key file. Only valid if `use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_cacert_file"></a>`tls_cacert_file`
+##### <a name="-icingadb--redis--tls_cacert_file"></a>`tls_cacert_file`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
 Location of the CA root certificate. Only valid if `use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="tls_auth_clients"></a>`tls_auth_clients`
+##### <a name="-icingadb--redis--tls_auth_clients"></a>`tls_auth_clients`
 
 Data type: `Optional[Enum['yes', 'no', 'optional']]`
 
 Set to `yes` to force authentication with a valid client certificate.
 Other Options are `no` and `optional`. Only valid if `use_tls` is turned on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="config"></a>`config`
+##### <a name="-icingadb--redis--config"></a>`config`
 
 Data type: `Hash[String, Any]`
 
@@ -659,7 +667,7 @@ Other parameters that can be set, see redis::instance.
 
 Default value: `{}`
 
-### <a name="icingadbredisglobals"></a>`icingadb::redis::globals`
+### <a name="icingadb--redis--globals"></a>`icingadb::redis::globals`
 
 This class loads the default parameters by doing a hiera lookup.
 
@@ -667,65 +675,65 @@ This class loads the default parameters by doing a hiera lookup.
 
 The following parameters are available in the `icingadb::redis::globals` class:
 
-* [`package_name`](#package_name)
-* [`service_name`](#service_name)
-* [`user`](#user)
-* [`group`](#group)
-* [`redis_bin`](#redis_bin)
-* [`conf_dir`](#conf_dir)
-* [`work_dir`](#work_dir)
-* [`run_dir`](#run_dir)
-* [`log_dir`](#log_dir)
+* [`package_name`](#-icingadb--redis--globals--package_name)
+* [`service_name`](#-icingadb--redis--globals--service_name)
+* [`user`](#-icingadb--redis--globals--user)
+* [`group`](#-icingadb--redis--globals--group)
+* [`redis_bin`](#-icingadb--redis--globals--redis_bin)
+* [`conf_dir`](#-icingadb--redis--globals--conf_dir)
+* [`work_dir`](#-icingadb--redis--globals--work_dir)
+* [`run_dir`](#-icingadb--redis--globals--run_dir)
+* [`log_dir`](#-icingadb--redis--globals--log_dir)
 
-##### <a name="package_name"></a>`package_name`
-
-Data type: `String`
-
-
-
-##### <a name="service_name"></a>`service_name`
+##### <a name="-icingadb--redis--globals--package_name"></a>`package_name`
 
 Data type: `String`
 
 
 
-##### <a name="user"></a>`user`
+##### <a name="-icingadb--redis--globals--service_name"></a>`service_name`
 
 Data type: `String`
 
 
 
-##### <a name="group"></a>`group`
+##### <a name="-icingadb--redis--globals--user"></a>`user`
 
 Data type: `String`
 
 
 
-##### <a name="redis_bin"></a>`redis_bin`
+##### <a name="-icingadb--redis--globals--group"></a>`group`
+
+Data type: `String`
+
+
+
+##### <a name="-icingadb--redis--globals--redis_bin"></a>`redis_bin`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="conf_dir"></a>`conf_dir`
+##### <a name="-icingadb--redis--globals--conf_dir"></a>`conf_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="work_dir"></a>`work_dir`
+##### <a name="-icingadb--redis--globals--work_dir"></a>`work_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="run_dir"></a>`run_dir`
+##### <a name="-icingadb--redis--globals--run_dir"></a>`run_dir`
 
 Data type: `Stdlib::Absolutepath`
 
 
 
-##### <a name="log_dir"></a>`log_dir`
+##### <a name="-icingadb--redis--globals--log_dir"></a>`log_dir`
 
 Data type: `Stdlib::Absolutepath`
 
