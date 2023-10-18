@@ -45,23 +45,23 @@ class icingadb::redis::config {
   }
 
   redis::instance { 'icingadb-redis':
-    * => merge($icingadb::redis::config, {
-        bind                => any2array($icingadb::redis::bind),
-        config_file         => "${conf_dir}/icingadb-redis.conf",
-        config_file_orig    => "${conf_dir}/icingadb-redis.conf",
-        config_owner        => $user,
-        config_group        => $group,
-        port                => $port,
-        daemonize           => true,
-        service_user        => $user,
-        service_group       => $group,
-        workdir             => $icingadb::redis::globals::work_dir,
-        manage_service_file => false,
-        service_name        => $icingadb::redis::globals::service_name,
-        pid_file            => "${icingadb::redis::globals::run_dir}/icingadb-redis-server.pid",
-        log_file            => "${icingadb::redis::globals::log_dir}/icingadb-redis-server.log",
-        requirepass         => unwrap($icingadb::redis::requirepass),
-    } + $tls_settings),
+    * => $icingadb::redis::config + {
+      bind                => any2array($icingadb::redis::bind),
+      config_file         => "${conf_dir}/icingadb-redis.conf",
+      config_file_orig    => "${conf_dir}/icingadb-redis.conf",
+      config_owner        => $user,
+      config_group        => $group,
+      port                => $port,
+      daemonize           => true,
+      service_user        => $user,
+      service_group       => $group,
+      workdir             => $icingadb::redis::globals::work_dir,
+      manage_service_file => false,
+      service_name        => $icingadb::redis::globals::service_name,
+      pid_file            => "${icingadb::redis::globals::run_dir}/icingadb-redis-server.pid",
+      log_file            => "${icingadb::redis::globals::log_dir}/icingadb-redis-server.log",
+      requirepass         => unwrap($icingadb::redis::requirepass),
+    } + $tls_settings,
   }
 
   -> File <| ensure != 'directory' and tag == 'icingadb::redis::config::file' |>
