@@ -39,7 +39,7 @@ class icingadb::install::db {
       exec { 'icingadb-pgsql-import-schema':
         user        => 'root',
         path        => $facts['path'],
-        environment => [sprintf('PGPASSWORD=%s', icinga::unwrap($db_password))],
+        environment => [sprintf('PGPASSWORD=%s', unwrap($db_password))],
         command     => "psql '${db_cli_options}' -w -f '${db_schema}'",
         unless      => "psql '${db_cli_options}' -w -c 'select version from icingadb_schema'",
       }
