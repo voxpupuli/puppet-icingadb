@@ -1,19 +1,10 @@
-# This file can be used to install module dependencies for unit testing
-# See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
 ---
 fixtures:
-  forge_modules:
-    icinga:
-      repo: icinga/icinga
-    stdlib:
-      repo: puppetlabs/stdlib
-    apt:
-      repo: puppetlabs/apt
-    zypprepo:
-      repo: puppet/zypprepo
-    yumrepo_core:
-      repo: puppetlabs-yumrepo_core
-    redis:
-      repo: puppet/redis
-    augeas:
-      repo: puppetlabs-augeas_core
+  repositories:
+    icinga: https://github.com/voxpupuli/puppet-icinga
+    stdlib: https://github.com/puppetlabs/puppetlabs-stdlib
+    apt: https://github.com/puppetlabs/puppetlabs-apt
+    zypprepo: https://github.com/voxpupuli/puppet-zypprepo
+    yumrepo_core: https://github.com/puppetlabs/puppetlabs-yumrepo_core
+    redis: https://github.com/voxpupuli/puppet-redis
+    augeas_core: https://github.com/puppetlabs/puppetlabs-augeas_core
