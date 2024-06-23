@@ -15,6 +15,10 @@
     {
       "name": "icinga/icinga",
       "version_requirement": ">= 2.9.0 < 6.0.0"
+    },
+    {
+      "name": "puppet/redis",
+      "version_requirement": ">= 7.0.0 < 12.0.0"
     }
   ],
   "operatingsystem_support": [
