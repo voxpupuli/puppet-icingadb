@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.0.1](https://github.com/voxpupuli/puppet-icingadb/tree/v2.0.1) (2024-07-02)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v2.0.0...v2.0.1)
+
+**Fixed bugs:**
+
+- Mange missing log\_dir for icingadb-redis [\#19](https://github.com/voxpupuli/puppet-icingadb/pull/19) ([lbetz](https://github.com/lbetz))
+
+**Merged pull requests:**
+
+- fixtures.yml: Pull dependencies from git [\#18](https://github.com/voxpupuli/puppet-icingadb/pull/18) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v2.0.0](https://github.com/voxpupuli/puppet-icingadb/tree/v2.0.0) (2024-05-23)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v1.0.1...v2.0.0)

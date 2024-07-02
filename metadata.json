@@ -1,6 +1,6 @@
 {
   "name": "puppet-icingadb",
-  "version": "2.0.1-rc0",
+  "version": "2.0.1",
   "author": "Vox Pupuli",
   "summary": "Puppet module to manage IcingaDB and the IcingaDB Redis server",
   "license": "Apache-2.0",
