@@ -25,7 +25,6 @@ class icingadb::redis::install {
     package { $package_name:
       ensure => installed,
     }
-
     -> file { $log_dir:
       ensure => directory,
       owner  => $user,
