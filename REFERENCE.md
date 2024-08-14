@@ -135,7 +135,7 @@ Default value: `6380`
 
 ##### <a name="-icingadb--redis_password"></a>`redis_password`
 
-Data type: `Optional[Variant[String, Sensitive[String]]]`
+Data type: `Optional[Icinga::Secret]`
 
 Passwort to login into redis.
 
@@ -159,7 +159,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--redis_tls_cert"></a>`redis_tls_cert`
 
-Data type: `Optional[String]`
+Data type: `Optional[String[1]]`
 
 Client certificate in PEM format. Only valid if `redis_use_tls` is turned on.
 
@@ -175,7 +175,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--redis_tls_key"></a>`redis_tls_key`
 
-Data type: `Optional[Variant[String, Sensitive[String]]]`
+Data type: `Optional[Icinga::Secret]`
 
 Client private key in PEM format. Only valid if `redis_use_tls` is turned on.
 
@@ -191,7 +191,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--redis_tls_cacert"></a>`redis_tls_cacert`
 
-Data type: `Optional[String]`
+Data type: `Optional[String[1]]`
 
 CA root certificate in PEM format. Only valid if `redis_use_tls` is turned on.
 
@@ -231,7 +231,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--db_name"></a>`db_name`
 
-Data type: `String`
+Data type: `String[1]`
 
 The IcingaDB database.
 
@@ -239,7 +239,7 @@ Default value: `'icingadb'`
 
 ##### <a name="-icingadb--db_username"></a>`db_username`
 
-Data type: `String`
+Data type: `String[1]`
 
 User that is used to connect the database.
 
@@ -247,7 +247,7 @@ Default value: `'icingadb'`
 
 ##### <a name="-icingadb--db_password"></a>`db_password`
 
-Data type: `Variant[String, Sensitive[String]]`
+Data type: `Icinga::Secret`
 
 Passwort to login into database.
 
@@ -279,7 +279,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--db_tls_cert"></a>`db_tls_cert`
 
-Data type: `Optional[String]`
+Data type: `Optional[String[1]]`
 
 Client certificate in PEM format. Only valid if `db_use_tls` is turned on.
 
@@ -295,7 +295,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--db_tls_key"></a>`db_tls_key`
 
-Data type: `Optional[Variant[String, Sensitive[String]]]`
+Data type: `Optional[Icinga::Secret]`
 
 Client private key in PEM format. Only valid if `db_use_tls` is turned on.
 
@@ -311,7 +311,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--db_tls_cacert"></a>`db_tls_cacert`
 
-Data type: `Optional[String]`
+Data type: `Optional[String[1]]`
 
 CA root certificate in PEM format. Only valid if `db_use_tls` is turned on.
 
@@ -418,25 +418,25 @@ The following parameters are available in the `icingadb::globals` class:
 
 ##### <a name="-icingadb--globals--package_name"></a>`package_name`
 
-Data type: `String`
+Data type: `String[1]`
 
 
 
 ##### <a name="-icingadb--globals--service_name"></a>`service_name`
 
-Data type: `String`
+Data type: `String[1]`
 
 
 
 ##### <a name="-icingadb--globals--user"></a>`user`
 
-Data type: `String`
+Data type: `String[1]`
 
 
 
 ##### <a name="-icingadb--globals--group"></a>`group`
 
-Data type: `String`
+Data type: `String[1]`
 
 
 
@@ -579,7 +579,7 @@ Default value: `true`
 
 ##### <a name="-icingadb--redis--requirepass"></a>`requirepass`
 
-Data type: `Optional[Variant[String, Sensitive[String]]]`
+Data type: `Optional[Icinga::Secret]`
 
 Require clients to issue AUTH <PASSWORD> before processing
 any other commands.
@@ -604,7 +604,7 @@ Default value: `6381`
 
 ##### <a name="-icingadb--redis--tls_cert"></a>`tls_cert`
 
-Data type: `Optional[String]`
+Data type: `Optional[String[1]]`
 
 Certificate in PEM format. Only valid if `use_tls` is turned on.
 
@@ -612,7 +612,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--redis--tls_key"></a>`tls_key`
 
-Data type: `Optional[Variant[String, Sensitive[String]]]`
+Data type: `Optional[Icinga::Secret]`
 
 Private key in PEM format. Only valid if `use_tls` is turned on.
 
@@ -620,7 +620,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--redis--tls_cacert"></a>`tls_cacert`
 
-Data type: `Optional[String]`
+Data type: `Optional[String[1]]`
 
 The CA root certificate in PEM format. Only valid if `use_tls` is turned on.
 
@@ -661,7 +661,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--redis--config"></a>`config`
 
-Data type: `Hash[String, Any]`
+Data type: `Hash[String[1], Any]`
 
 Other parameters that can be set, see redis::instance.
 
@@ -687,25 +687,25 @@ The following parameters are available in the `icingadb::redis::globals` class:
 
 ##### <a name="-icingadb--redis--globals--package_name"></a>`package_name`
 
-Data type: `String`
+Data type: `String[1]`
 
 
 
 ##### <a name="-icingadb--redis--globals--service_name"></a>`service_name`
 
-Data type: `String`
+Data type: `String[1]`
 
 
 
 ##### <a name="-icingadb--redis--globals--user"></a>`user`
 
-Data type: `String`
+Data type: `String[1]`
 
 
 
 ##### <a name="-icingadb--redis--globals--group"></a>`group`
 
-Data type: `String`
+Data type: `String[1]`
 
 
 
