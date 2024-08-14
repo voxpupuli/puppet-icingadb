@@ -20,10 +20,10 @@
 # @param log_dir
 #
 class icingadb::redis::globals (
-  String               $package_name,
-  String               $service_name,
-  String               $user,
-  String               $group,
+  String[1]            $package_name,
+  String[1]            $service_name,
+  String[1]            $user,
+  String[1]            $group,
   Stdlib::Absolutepath $redis_bin,
   Stdlib::Absolutepath $conf_dir,
   Stdlib::Absolutepath $work_dir,
