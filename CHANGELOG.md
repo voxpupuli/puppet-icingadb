@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.0.0](https://github.com/voxpupuli/puppet-icingadb/tree/v3.0.0) (2024-08-15)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v2.0.1...v3.0.0)
+
+**Breaking changes:**
+
+- Drop EOL CentOS 8 support [\#29](https://github.com/voxpupuli/puppet-icingadb/pull/29) ([lbetz](https://github.com/lbetz))
+- remove Debian Buster support [\#26](https://github.com/voxpupuli/puppet-icingadb/pull/26) ([lbetz](https://github.com/lbetz))
+- remove support of EL7 platforms [\#25](https://github.com/voxpupuli/puppet-icingadb/pull/25) ([lbetz](https://github.com/lbetz))
+
+**Implemented enhancements:**
+
+- Set requirement of puppet-icinga to \>= 3.0.0 [\#31](https://github.com/voxpupuli/puppet-icingadb/pull/31) ([lbetz](https://github.com/lbetz))
+- Restrict params to non-empty strings, replace to Icinga::Secret datatype [\#30](https://github.com/voxpupuli/puppet-icingadb/pull/30) ([lbetz](https://github.com/lbetz))
+- Add Ubuntu Noble \(24.04\) support [\#28](https://github.com/voxpupuli/puppet-icingadb/pull/28) ([lbetz](https://github.com/lbetz))
+- Add Fedora 40 support [\#27](https://github.com/voxpupuli/puppet-icingadb/pull/27) ([lbetz](https://github.com/lbetz))
+
+**Fixed bugs:**
+
+- Fix missing dependency beween redis package and logdir [\#24](https://github.com/voxpupuli/puppet-icingadb/pull/24) ([lbetz](https://github.com/lbetz))
+
 ## [v2.0.1](https://github.com/voxpupuli/puppet-icingadb/tree/v2.0.1) (2024-07-02)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v2.0.0...v2.0.1)
