@@ -99,17 +99,17 @@ class icingadb::redis (
   Boolean                                      $manage_packages  = true,
   Variant[Stdlib::Host,Array[Stdlib::Host]]    $bind             = ['127.0.0.1', '::1'],
   Stdlib::Port                                 $port             = 6380,
-  Optional[Variant[String, Sensitive[String]]] $requirepass      = undef,
+  Optional[Icinga::Secret]                     $requirepass      = undef,
   Optional[Boolean]                            $use_tls          = undef,
   Stdlib::Port                                 $tls_port         = 6381,
-  Optional[String]                             $tls_cert         = undef,
-  Optional[Variant[String, Sensitive[String]]] $tls_key          = undef,
-  Optional[String]                             $tls_cacert       = undef,
+  Optional[String[1]]                          $tls_cert         = undef,
+  Optional[Icinga::Secret]                     $tls_key          = undef,
+  Optional[String[1]]                          $tls_cacert       = undef,
   Optional[Stdlib::Absolutepath]               $tls_cert_file    = undef,
   Optional[Stdlib::Absolutepath]               $tls_key_file     = undef,
   Optional[Stdlib::Absolutepath]               $tls_cacert_file  = undef,
   Optional[Enum['yes', 'no', 'optional']]      $tls_auth_clients = undef,
-  Hash[String, Any]                            $config           = {},
+  Hash[String[1], Any]                         $config           = {},
 ) {
   require icingadb::redis::globals
 
