@@ -16,10 +16,10 @@
 # @param pgsql_db_schema
 #
 class icingadb::globals (
-  String               $package_name,
-  String               $service_name,
-  String               $user,
-  String               $group,
+  String[1]            $package_name,
+  String[1]            $service_name,
+  String[1]            $user,
+  String[1]            $group,
   Stdlib::Absolutepath $conf_dir,
   Stdlib::Absolutepath $mysql_db_schema,
   Stdlib::Absolutepath $pgsql_db_schema,
