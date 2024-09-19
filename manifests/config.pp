@@ -45,6 +45,7 @@ class icingadb::config {
         db_tls_key             => $db_tls_files['key_file'],
         db_tls_cacert          => $db_tls_files['cacert_file'],
         db_tls_insecure        => $icingadb::db_tls_insecure,
+        db_options             => $icingadb::db_options,
         redis_tls              => $icingadb::redis_use_tls,
         redis_tls_cert         => $redis_tls_files['cert_file'],
         redis_tls_key          => $redis_tls_files['key_file'],

@@ -101,6 +101,10 @@
 # @param db_tls_cacert_file
 #   Location of the CA root certificate. Only valid if `db_use_tls` is turned on.
 #
+# @param db_options
+#   List of low-level database options that can be set to influence some
+#   Icinga DB internal default behaviours.
+#
 # @param logging_level
 #   Specifies the default logging level. Can be set to fatal, error, warn, info or debug.
 #
@@ -145,6 +149,13 @@ class icingadb (
   Optional[Stdlib::Absolutepath]                 $db_tls_cert_file       = undef,
   Optional[Stdlib::Absolutepath]                 $db_tls_key_file        = undef,
   Optional[Stdlib::Absolutepath]                 $db_tls_cacert_file     = undef,
+  Hash[Enum[
+      'max_connections',
+      'max_connections_per_table',
+      'max_placeholders_per_statement',
+      'max_rows_per_transaction',
+      'wsrep_sync_wait'
+  ], Integer[1]]                                 $db_options             = {},
   Stdlib::Host                                   $redis_host             = 'localhost',
   Stdlib::Port                                   $redis_port             = 6380,
   Optional[Icinga::Secret]                       $redis_password         = undef,
