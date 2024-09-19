@@ -77,6 +77,7 @@ The following parameters are available in the `icingadb` class:
 * [`db_tls_key_file`](#-icingadb--db_tls_key_file)
 * [`db_tls_cacert`](#-icingadb--db_tls_cacert)
 * [`db_tls_cacert_file`](#-icingadb--db_tls_cacert_file)
+* [`db_options`](#-icingadb--db_options)
 * [`logging_level`](#-icingadb--logging_level)
 * [`logging_output`](#-icingadb--logging_output)
 * [`logging_interval`](#-icingadb--logging_interval)
@@ -324,6 +325,25 @@ Data type: `Optional[Stdlib::Absolutepath]`
 Location of the CA root certificate. Only valid if `db_use_tls` is turned on.
 
 Default value: `undef`
+
+##### <a name="-icingadb--db_options"></a>`db_options`
+
+Data type:
+
+```puppet
+Hash[Enum[
+      'max_connections',
+      'max_connections_per_table',
+      'max_placeholders_per_statement',
+      'max_rows_per_transaction',
+      'wsrep_sync_wait'
+  ], Integer[1]]
+```
+
+List of low-level database options that can be set to influence some
+Icinga DB internal default behaviours.
+
+Default value: `{}`
 
 ##### <a name="-icingadb--logging_level"></a>`logging_level`
 

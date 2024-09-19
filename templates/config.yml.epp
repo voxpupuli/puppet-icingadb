@@ -9,6 +9,7 @@
       Optional[String]                             $db_tls_key             = undef,
       Optional[String]                             $db_tls_cacert          = undef,
       Optional[Boolean]                            $db_tls_insecure        = undef,
+      Hash[String[1], Integer[1]]                  $db_options             = {},
       Stdlib::Host                                 $redis_host,
       Optional[Stdlib::Port]                       $redis_port             = undef,
       Optional[Variant[String, Sensitive[String]]] $redis_password         = undef,
@@ -49,6 +50,12 @@ database:
 <% } -%>
 <% if $db_tls_insecure =~ Boolean { -%>
   insecure: <%= $db_tls_insecure %>
+<% } -%>
+<% } -%>
+<% unless empty($db_options) { -%>
+  options:
+<% $db_options.each |String $opt, Integer $val| { -%>
+    <%= $opt %>: <%= $val %>
 <% } -%>
 <% } -%>
 
