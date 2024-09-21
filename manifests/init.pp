@@ -169,12 +169,7 @@ class icingadb (
   Optional[Stdlib::Absolutepath]                 $redis_tls_cacert_file  = undef,
   Enum['fatal','error','warn','info','debug']    $logging_level          = 'info',
   Optional[Enum['console','systemd-journald']]   $logging_output         = undef,
-  Hash[Enum[
-      'config-sync','database','dump-signals',
-      'heartbeat','high-availability',
-      'history-sync','overdue-sync','redis',
-      'retention','runtime-updates','telemetry'
-  ],Enum['fatal','error','warn','info','debug']] $logging_options        = {},
+  IcingaDB::LoggingOptions                       $logging_options        = {},
   Pattern[/^\d+\.?\d*[d|h|m|s]?$/]               $logging_interval       = '20s',
   Optional[Integer[1]]                           $retention_history_data = undef,
   Optional[Integer[1]]                           $retention_sla_data     = undef,

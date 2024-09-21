@@ -24,6 +24,10 @@ Configures IcingaDB
 * `icingadb::redis::service`: Manage IcingaDB Redis server service
 * `icingadb::service`: Manage IcingaDB service
 
+### Data types
+
+* [`IcingaDB::LoggingOptions`](#IcingaDB--LoggingOptions)
+
 ## Classes
 
 ### <a name="icingadb"></a>`icingadb`
@@ -371,16 +375,7 @@ Default value: `'20s'`
 
 ##### <a name="-icingadb--logging_options"></a>`logging_options`
 
-Data type:
-
-```puppet
-Hash[Enum[
-      'config-sync','database','dump-signals',
-      'heartbeat','high-availability',
-      'history-sync','overdue-sync','redis',
-      'retention','runtime-updates','telemetry'
-  ],Enum['fatal','error','warn','info','debug']]
-```
+Data type: `IcingaDB::LoggingOptions`
 
 Map of component-logging level pairs to define a different log level than
 the default value for each component.
@@ -758,4 +753,21 @@ Data type: `Stdlib::Absolutepath`
 Data type: `Stdlib::Absolutepath`
 
 
+
+## Data types
+
+### <a name="IcingaDB--LoggingOptions"></a>`IcingaDB::LoggingOptions`
+
+The IcingaDB::LoggingOptions data type.
+
+Alias of
+
+```puppet
+Hash[Enum[
+    'config-sync','database','dump-signals',
+    'heartbeat','high-availability',
+    'history-sync','overdue-sync','redis',
+    'retention','runtime-updates','telemetry'
+  ], Enum['fatal','error','warn','info','debug']]
+```
 
