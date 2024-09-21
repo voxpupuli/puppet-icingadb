@@ -24,6 +24,10 @@ Configures IcingaDB
 * `icingadb::redis::service`: Manage IcingaDB Redis server service
 * `icingadb::service`: Manage IcingaDB service
 
+### Data types
+
+* [`IcingaDB::RetentionOptions`](#IcingaDB--RetentionOptions)
+
 ## Classes
 
 ### <a name="icingadb"></a>`icingadb`
@@ -405,14 +409,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--retention_options"></a>`retention_options`
 
-Data type:
-
-```puppet
-Hash[Enum[
-      'acknowledgement','comment','downtime',
-      'flapping','notification','state'
-  ], Integer[1]]
-```
+Data type: `IcingaDB::RetentionOptions`
 
 Map of history category to number of days to retain its data in order to
 enable retention only for specific categories or to override the number
@@ -758,4 +755,19 @@ Data type: `Stdlib::Absolutepath`
 Data type: `Stdlib::Absolutepath`
 
 
+
+## Data types
+
+### <a name="IcingaDB--RetentionOptions"></a>`IcingaDB::RetentionOptions`
+
+The IcingaDB::RetentionOptions data type.
+
+Alias of
+
+```puppet
+Hash[Enum[
+    'acknowledgement','comment','downtime',
+    'flapping','notification','state'
+  ], Integer[1]]
+```
 
