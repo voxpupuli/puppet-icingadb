@@ -149,13 +149,7 @@ class icingadb (
   Optional[Stdlib::Absolutepath]                 $db_tls_cert_file       = undef,
   Optional[Stdlib::Absolutepath]                 $db_tls_key_file        = undef,
   Optional[Stdlib::Absolutepath]                 $db_tls_cacert_file     = undef,
-  Hash[Enum[
-      'max_connections',
-      'max_connections_per_table',
-      'max_placeholders_per_statement',
-      'max_rows_per_transaction',
-      'wsrep_sync_wait'
-  ], Integer[1]]                                 $db_options             = {},
+  IcingaDB::DBOptions                            $db_options             = {},
   Stdlib::Host                                   $redis_host             = 'localhost',
   Stdlib::Port                                   $redis_port             = 6380,
   Optional[Icinga::Secret]                       $redis_password         = undef,
