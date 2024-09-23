@@ -26,7 +26,8 @@ Configures IcingaDB
 
 ### Data types
 
-* [`IcingaDB::RetentionOptions`](#IcingaDB--RetentionOptions)
+* [`IcingaDB::RetentionOptions`](#IcingaDB--RetentionOptions): Data type for retention options of the connection to
+the IcingaDB database.
 
 ## Classes
 
@@ -760,7 +761,8 @@ Data type: `Stdlib::Absolutepath`
 
 ### <a name="IcingaDB--RetentionOptions"></a>`IcingaDB::RetentionOptions`
 
-The IcingaDB::RetentionOptions data type.
+Data type for retention options of the connection to
+the IcingaDB database.
 
 Alias of
 
