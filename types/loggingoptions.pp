@@ -1,3 +1,6 @@
+# @summary
+#   Logging options data type for the IcingaDB process.
+#
 type IcingaDB::LoggingOptions = Hash[
   Enum[
     'config-sync','database','dump-signals',

@@ -26,7 +26,7 @@ Configures IcingaDB
 
 ### Data types
 
-* [`IcingaDB::LoggingOptions`](#IcingaDB--LoggingOptions)
+* [`IcingaDB::LoggingOptions`](#IcingaDB--LoggingOptions): Logging options data type for the IcingaDB process.
 
 ## Classes
 
@@ -758,7 +758,7 @@ Data type: `Stdlib::Absolutepath`
 
 ### <a name="IcingaDB--LoggingOptions"></a>`IcingaDB::LoggingOptions`
 
-The IcingaDB::LoggingOptions data type.
+Logging options data type for the IcingaDB process.
 
 Alias of
 
