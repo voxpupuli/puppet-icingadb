@@ -26,7 +26,7 @@ Configures IcingaDB
 
 ### Data types
 
-* [`IcingaDB::DBOptions`](#IcingaDB--DBOptions)
+* [`IcingaDB::DBOptions`](#IcingaDB--DBOptions): Data type for options to connect the IcingaDB database.
 
 ## Classes
 
@@ -757,7 +757,7 @@ Data type: `Stdlib::Absolutepath`
 
 ### <a name="IcingaDB--DBOptions"></a>`IcingaDB::DBOptions`
 
-The IcingaDB::DBOptions data type.
+Data type for options to connect the IcingaDB database.
 
 Alias of
 

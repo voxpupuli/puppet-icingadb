@@ -1,3 +1,6 @@
+# @summary
+#   Data type for options to connect the IcingaDB database.
+#
 type IcingaDB::DBOptions = Hash[
   Enum[
     'max_connections',
