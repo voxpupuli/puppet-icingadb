@@ -149,13 +149,7 @@ class icingadb (
   Optional[Stdlib::Absolutepath]                 $db_tls_cert_file       = undef,
   Optional[Stdlib::Absolutepath]                 $db_tls_key_file        = undef,
   Optional[Stdlib::Absolutepath]                 $db_tls_cacert_file     = undef,
-  Hash[Enum[
-      'max_connections',
-      'max_connections_per_table',
-      'max_placeholders_per_statement',
-      'max_rows_per_transaction',
-      'wsrep_sync_wait'
-  ], Integer[1]]                                 $db_options             = {},
+  IcingaDB::DBOptions                            $db_options             = {},
   Stdlib::Host                                   $redis_host             = 'localhost',
   Stdlib::Port                                   $redis_port             = 6380,
   Optional[Icinga::Secret]                       $redis_password         = undef,
@@ -208,6 +202,55 @@ class icingadb (
     $redis_tls_cacert,
   )
 
+  #
+  # config file content
+  #
+  $retention = delete_undef_values({
+      history-days => $icingadb::retention_history_data,
+      sla-days     => $icingadb::retention_sla_data,
+      options      => if $icingadb::retention_options.empty { undef } else { $icingadb::retention_options },
+  })
+
+  $config    = {
+    database => delete_undef_values({
+        type     => $db_type,
+        host     => $db_host,
+        port     => $db_port,
+        database => $db_name,
+        user     => $db_username,
+        password => unwrap($db_password),
+        tls      => $db_use_tls,
+        cert     => $db_tls_files['cert_file'],
+        key      => $db_tls_files['key_file'],
+        ca       => $db_tls_files['cacert_file'],
+        insecure => $db_tls_insecure,
+        options  => if $db_options.empty { undef } else { $db_options },
+    }),
+    redis    => delete_undef_values({
+        host     => $redis_host,
+        port     => $redis_port,
+        password => unwrap($redis_password),
+        tls      => $redis_use_tls,
+        cert     => $redis_tls_files['cert_file'],
+        key      => $redis_tls_files['key_file'],
+        ca       => $redis_tls_files['cacert_file'],
+        insecure => $redis_tls_insecure,
+    }),
+    logging  => delete_undef_values({
+        level    => $logging_level,
+        output   => $logging_output,
+        interval => $logging_interval,
+        options  => if $logging_options.empty { undef } else { $logging_options },
+    }),
+  } + unless $retention.empty {
+    { retention => $retention }
+  } else {
+    {}
+  }
+
+  #
+  # declarations
+  #
   class { 'icingadb::install': }
   -> class { 'icingadb::config':
     notify => Class['icingadb::service'],

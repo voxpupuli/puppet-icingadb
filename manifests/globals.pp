@@ -24,4 +24,5 @@ class icingadb::globals (
   Stdlib::Absolutepath $mysql_db_schema,
   Stdlib::Absolutepath $pgsql_db_schema,
 ) {
+  $stdlib_version = load_module_metadata('stdlib')['version']
 }
