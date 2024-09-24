@@ -26,6 +26,7 @@ Configures IcingaDB
 
 ### Data types
 
+* [`IcingaDB::LoggingOptions`](#IcingaDB--LoggingOptions): Logging options data type for the IcingaDB process.
 * [`IcingaDB::RetentionOptions`](#IcingaDB--RetentionOptions): Data type for retention options of the connection to
 the IcingaDB database.
 * [`IcingaDB::DBOptions`](#IcingaDB--DBOptions): Data type for options to connect the IcingaDB database.
@@ -367,16 +368,7 @@ Default value: `'20s'`
 
 ##### <a name="-icingadb--logging_options"></a>`logging_options`
 
-Data type:
-
-```puppet
-Hash[Enum[
-      'config-sync','database','dump-signals',
-      'heartbeat','high-availability',
-      'history-sync','overdue-sync','redis',
-      'retention','runtime-updates','telemetry'
-  ],Enum['fatal','error','warn','info','debug']]
-```
+Data type: `IcingaDB::LoggingOptions`
 
 Map of component-logging level pairs to define a different log level than
 the default value for each component.
@@ -750,6 +742,10 @@ Data type: `Stdlib::Absolutepath`
 
 ## Data types
 
+### <a name="IcingaDB--LoggingOptions"></a>`IcingaDB::LoggingOptions`
+
+Logging options data type for the IcingaDB process.
+
 ### <a name="IcingaDB--RetentionOptions"></a>`IcingaDB::RetentionOptions`
 
 Data type for retention options of the connection to
@@ -763,8 +759,10 @@ Alias of
 
 ```puppet
 Hash[Enum[
-    'acknowledgement','comment','downtime',
-    'flapping','notification','state'
-  ], Integer[1]]
+    'config-sync','database','dump-signals',
+    'heartbeat','high-availability',
+    'history-sync','overdue-sync','redis',
+    'retention','runtime-updates','telemetry'
+  ], Enum['fatal','error','warn','info','debug']]
 ```
 
