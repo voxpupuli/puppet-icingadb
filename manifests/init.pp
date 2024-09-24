@@ -172,10 +172,7 @@ class icingadb (
   Pattern[/^\d+\.?\d*[d|h|m|s]?$/]               $logging_interval       = '20s',
   Optional[Integer[1]]                           $retention_history_data = undef,
   Optional[Integer[1]]                           $retention_sla_data     = undef,
-  Hash[Enum[
-      'acknowledgement','comment','downtime',
-      'flapping','notification','state'
-  ], Integer[1]]                                 $retention_options      = {},
+  IcingaDB::RetentionOptions                     $retention_options      = {},
 ) {
   require icingadb::globals
 
