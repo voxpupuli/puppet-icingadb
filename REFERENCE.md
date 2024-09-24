@@ -27,6 +27,9 @@ Configures IcingaDB
 ### Data types
 
 * [`IcingaDB::LoggingOptions`](#IcingaDB--LoggingOptions): Logging options data type for the IcingaDB process.
+* [`IcingaDB::RetentionOptions`](#IcingaDB--RetentionOptions): Data type for retention options of the connection to
+the IcingaDB database.
+* [`IcingaDB::DBOptions`](#IcingaDB--DBOptions): Data type for options to connect the IcingaDB database.
 
 ## Classes
 
@@ -332,17 +335,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--db_options"></a>`db_options`
 
-Data type:
-
-```puppet
-Hash[Enum[
-      'max_connections',
-      'max_connections_per_table',
-      'max_placeholders_per_statement',
-      'max_rows_per_transaction',
-      'wsrep_sync_wait'
-  ], Integer[1]]
-```
+Data type: `IcingaDB::DBOptions`
 
 List of low-level database options that can be set to influence some
 Icinga DB internal default behaviours.
@@ -400,14 +393,7 @@ Default value: `undef`
 
 ##### <a name="-icingadb--retention_options"></a>`retention_options`
 
-Data type:
-
-```puppet
-Hash[Enum[
-      'acknowledgement','comment','downtime',
-      'flapping','notification','state'
-  ], Integer[1]]
-```
+Data type: `IcingaDB::RetentionOptions`
 
 Map of history category to number of days to retain its data in order to
 enable retention only for specific categories or to override the number
@@ -759,6 +745,15 @@ Data type: `Stdlib::Absolutepath`
 ### <a name="IcingaDB--LoggingOptions"></a>`IcingaDB::LoggingOptions`
 
 Logging options data type for the IcingaDB process.
+
+### <a name="IcingaDB--RetentionOptions"></a>`IcingaDB::RetentionOptions`
+
+Data type for retention options of the connection to
+the IcingaDB database.
+
+### <a name="IcingaDB--DBOptions"></a>`IcingaDB::DBOptions`
+
+Data type for options to connect the IcingaDB database.
 
 Alias of
 

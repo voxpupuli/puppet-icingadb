@@ -20,9 +20,10 @@ describe 'icingadb' do
               'group' => 'icingadb',
               'mode' => '0640'
             },
-          ).with_content(%r{database:\n  type: mysql\n  host: localhost\n  database: icingadb\n  user: icingadb\n  password: supersecret\n\nredis:\n  host: localhost\n  port: 6380\n\n})
+          ).with_content(%r{database:\n  type: mysql\n  host: localhost\n  database: icingadb\n  user: icingadb\n  password: supersecret\nredis:\n  host: localhost\n  port: 6380\n})
         }
 
+        it { is_expected.not_to contain_file('/etc/icingadb/config.yml').with_content(%r{^retention:}) }
         it { is_expected.not_to contain_exec('icingadb-mysql-import-schema') }
         it { is_expected.to contain_service('icingadb').with('ensure' => 'running', 'enable' => true) }
       end
@@ -79,10 +80,9 @@ describe 'icingadb' do
         end
 
         it { is_expected.not_to contain_exec('icingadb-mysql-import-schema') }
-        it { is_expected.not_to contain_file('/etc/icingadb/config.yml').with_content(%r{tls}) }
         it {
           is_expected.to contain_file('/etc/icingadb/config.yml')
-            .with_content(%r{database:\n  type: mysql\n  host: db.example.org\n  port: 4711\n  database: foo\n  user: bar\n  password: supersecret\n\n})
+            .with_content(%r{database:\n  type: mysql\n  host: db.example.org\n  port: 4711\n  database: foo\n  user: bar\n  password: supersecret\n  tls: false\n})
         }
       end
 
@@ -135,10 +135,9 @@ describe 'icingadb' do
         end
 
         it { is_expected.not_to contain_exec('icingadb-pgsql-import-schema') }
-        it { is_expected.not_to contain_file('/etc/icingadb/config.yml').with_content(%r{tls}) }
         it {
           is_expected.to contain_file('/etc/icingadb/config.yml')
-            .with_content(%r{database:\n  type: pgsql\n  host: db.example.org\n  port: 4711\n  database: foo\n  user: bar\n  password: supersecret\n\n})
+            .with_content(%r{database:\n  type: pgsql\n  host: db.example.org\n  port: 4711\n  database: foo\n  user: bar\n  password: supersecret\n  tls: false\n})
         }
       end
 
