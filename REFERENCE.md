@@ -26,10 +26,10 @@ Configures IcingaDB
 
 ### Data types
 
+* [`IcingaDB::DBOptions`](#IcingaDB--DBOptions): Data type for options to connect the IcingaDB database.
 * [`IcingaDB::LoggingOptions`](#IcingaDB--LoggingOptions): Logging options data type for the IcingaDB process.
 * [`IcingaDB::RetentionOptions`](#IcingaDB--RetentionOptions): Data type for retention options of the connection to
 the IcingaDB database.
-* [`IcingaDB::DBOptions`](#IcingaDB--DBOptions): Data type for options to connect the IcingaDB database.
 
 ## Classes
 
@@ -742,18 +742,25 @@ Data type: `Stdlib::Absolutepath`
 
 ## Data types
 
-### <a name="IcingaDB--LoggingOptions"></a>`IcingaDB::LoggingOptions`
-
-Logging options data type for the IcingaDB process.
-
-### <a name="IcingaDB--RetentionOptions"></a>`IcingaDB::RetentionOptions`
-
-Data type for retention options of the connection to
-the IcingaDB database.
-
 ### <a name="IcingaDB--DBOptions"></a>`IcingaDB::DBOptions`
 
 Data type for options to connect the IcingaDB database.
+
+Alias of
+
+```puppet
+Hash[Enum[
+    'max_connections',
+    'max_connections_per_table',
+    'max_placeholders_per_statement',
+    'max_rows_per_transaction',
+    'wsrep_sync_wait'
+  ], Integer[1]]
+```
+
+### <a name="IcingaDB--LoggingOptions"></a>`IcingaDB::LoggingOptions`
+
+Logging options data type for the IcingaDB process.
 
 Alias of
 
@@ -764,5 +771,19 @@ Hash[Enum[
     'history-sync','overdue-sync','redis',
     'retention','runtime-updates','telemetry'
   ], Enum['fatal','error','warn','info','debug']]
+```
+
+### <a name="IcingaDB--RetentionOptions"></a>`IcingaDB::RetentionOptions`
+
+Data type for retention options of the connection to
+the IcingaDB database.
+
+Alias of
+
+```puppet
+Hash[Enum[
+    'acknowledgement','comment','downtime',
+    'flapping','notification','state'
+  ], Integer[1]]
 ```
 
