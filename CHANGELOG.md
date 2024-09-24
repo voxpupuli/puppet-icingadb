@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.1.0](https://github.com/voxpupuli/puppet-icingadb/tree/v3.1.0) (2024-09-24)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v3.0.0...v3.1.0)
+
+**Implemented enhancements:**
+
+- Add new data type for db options [\#40](https://github.com/voxpupuli/puppet-icingadb/pull/40) ([lbetz](https://github.com/lbetz))
+- Add new data type for retention options [\#39](https://github.com/voxpupuli/puppet-icingadb/pull/39) ([lbetz](https://github.com/lbetz))
+- Add new data type for logging options [\#38](https://github.com/voxpupuli/puppet-icingadb/pull/38) ([lbetz](https://github.com/lbetz))
+- Replace config template by conversion to yaml [\#37](https://github.com/voxpupuli/puppet-icingadb/pull/37) ([lbetz](https://github.com/lbetz))
+- Add missing database options in class icingadb [\#36](https://github.com/voxpupuli/puppet-icingadb/pull/36) ([lbetz](https://github.com/lbetz))
+
 ## [v3.0.0](https://github.com/voxpupuli/puppet-icingadb/tree/v3.0.0) (2024-08-15)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v2.0.1...v3.0.0)
