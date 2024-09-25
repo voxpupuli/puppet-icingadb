@@ -755,7 +755,7 @@ Hash[Enum[
     'max_placeholders_per_statement',
     'max_rows_per_transaction',
     'wsrep_sync_wait'
-  ], Integer[1]]
+  ], Integer[0]]
 ```
 
 ### <a name="IcingaDB--LoggingOptions"></a>`IcingaDB::LoggingOptions`
