@@ -13,7 +13,11 @@
       "version_requirement": ">= 6.6.0 < 10.0.0"
     },
     {
-      "name": "icinga/icinga",
+      "name": "puppet/redis",
+      "version_requirement": ">= 8.2.0 < 12.0.0"
+    },
+    {
+      "name": "puppet/icinga",
       "version_requirement": ">= 3.0.0 < 7.0.0"
     }
   ],
