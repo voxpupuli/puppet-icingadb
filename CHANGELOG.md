@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.1.1](https://github.com/voxpupuli/puppet-icingadb/tree/v3.1.1) (2024-10-18)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v3.1.0...v3.1.1)
+
+**Fixed bugs:**
+
+- Fix \#43 add missing redis module dependency [\#45](https://github.com/voxpupuli/puppet-icingadb/pull/45) ([lbetz](https://github.com/lbetz))
+- fix \#35 allow null values in dboptions [\#44](https://github.com/voxpupuli/puppet-icingadb/pull/44) ([lbetz](https://github.com/lbetz))
+
 ## [v3.1.0](https://github.com/voxpupuli/puppet-icingadb/tree/v3.1.0) (2024-09-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v3.0.0...v3.1.0)
