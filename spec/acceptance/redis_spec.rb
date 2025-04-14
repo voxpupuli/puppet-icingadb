@@ -8,7 +8,7 @@ describe 'redis' do
   # TODO: the secrets are only required for EL tests, so we can limit the scope further down
   it 'works idempotently with no errors', if: password && user do
     pp = <<~MANIFEST
-      if $facts['os']['family'] == 'RedHat' {
+      if $facts['os']['family'] == 'RedHat' and $facts['os']['name'] != 'Fedora' {
         yumrepo { 'icinga-stable-release':
           descr    => 'ICINGA (stable release for epel)',
           baseurl  => 'https://packages.icinga.com/subscription/rhel/$releasever/release/',
@@ -19,9 +19,12 @@ describe 'redis' do
           password => "#{password}",
           before   => Class['icingadb::redis'],
         }
+        $manage_repos = false
+      } else {
+        $manage_repos = true
       }
       class { 'icingadb::redis':
-        manage_repos => $facts['os']['family'] != 'RedHat',
+        manage_repos => $manage_repos,
       }
     MANIFEST
 
