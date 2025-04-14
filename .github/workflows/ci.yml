@@ -16,12 +16,13 @@ concurrency:
   group: ${{ github.ref_name }}
   cancel-in-progress: true
 
+# Configure secrets here:
+#  https://docs.github.com/en/actions/security-guides/encrypted-secrets
+env:
+  ICINGA_REPO_PASSWORD: '${{ secrets.icinga_repo_password }}'
+  ICINGA_REPO_USER: '${{ secrets.icinga_repo_user }}'
+
 jobs:
   puppet:
     name: Puppet
-    uses: voxpupuli/gha-puppet/.github/workflows/beaker.yml@icinga
-    secrets:
-      # Configure secrets here:
-      #  https://docs.github.com/en/actions/security-guides/encrypted-secrets
-      icinga_repo_password: ${{ secrets.ICINGA_REPO_PASSWORD }}
-      icinga_repo_user: ${{ secrets.ICINGA_REPO_USER }}
+    uses: voxpupuli/gha-puppet/.github/workflows/beaker.yml@v3
