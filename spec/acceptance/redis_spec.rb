@@ -3,28 +3,15 @@
 require 'spec_helper_acceptance'
 
 describe 'redis' do
-  password = ENV.fetch('ICINGA_REPO_PASSWORD', nil)
-  user = ENV.fetch('ICINGA_REPO_USER', nil)
-  # TODO: the secrets are only required for EL tests, so we can limit the scope further down
-  it 'works idempotently with no errors', if: password && user do
+  it 'works idempotently with no errors' do
     pp = <<~MANIFEST
-      if $facts['os']['family'] == 'RedHat' and $facts['os']['name'] != 'Fedora' {
-        yumrepo { 'icinga-stable-release':
-          descr    => 'ICINGA (stable release for epel)',
-          baseurl  => 'https://packages.icinga.com/subscription/rhel/$releasever/release/',
-          enabled  => 1,
-          gpgcheck => 1,
-          gpgkey   => 'https://packages.icinga.com/icinga.key',
-          username => "#{user}",
-          password => "#{password}",
-          before   => Class['icingadb::redis'],
-        }
-        $manage_repos = false
-      } else {
-        $manage_repos = true
+      # Has to be an EL distribution and both, user and password have to be set!
+      if fact('os.family') == 'RedHat' and fact('os.name') != 'Fedora' and (!fact('icinga_repo_user') or !fact('icinga_repo_password')) {
+        fail('Enterprise Linux distributions require to set ICINGA_REPO_USER and ICINGA_REPO_PASSWORD for access to the Icinga Subscription repository!')
       }
+
       class { 'icingadb::redis':
-        manage_repos => $manage_repos,
+        manage_repos => true,
       }
     MANIFEST
 
