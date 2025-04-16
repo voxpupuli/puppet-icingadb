@@ -2,14 +2,15 @@
 
 require 'spec_helper_acceptance'
 
-describe 'redis' do
+skip = if (fact('os.family') == 'RedHat') && (fact('os.name') != 'Fedora') && !ENV.fetch('ICINGA_REPO_USER', nil).nil? && !ENV.fetch('ICINGA_REPO_PASSWORD', nil).nil?
+         puts 'Skipping acceptance test on RedHat-like systems, because environment variables ICINGA_REPO_USER and ICINGA_REPO_PASSWORD are missing'
+         true
+       else
+         false
+       end
+describe 'redis', skip: skip do
   it 'works idempotently with no errors' do
     pp = <<~MANIFEST
-      # Has to be an EL distribution and both, user and password have to be set!
-      if fact('os.family') == 'RedHat' and fact('os.name') != 'Fedora' and (!fact('icinga_repo_user') or !fact('icinga_repo_password')) {
-        fail('Enterprise Linux distributions require to set ICINGA_REPO_USER and ICINGA_REPO_PASSWORD for access to the Icinga Subscription repository!')
-      }
-
       class { 'icingadb::redis':
         manage_repos => true,
       }
