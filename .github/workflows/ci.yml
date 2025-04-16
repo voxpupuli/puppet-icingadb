@@ -26,3 +26,6 @@ jobs:
   puppet:
     name: Puppet
     uses: voxpupuli/gha-puppet/.github/workflows/beaker.yml@v3
+    # https://docs.github.com/en/actions/sharing-automations/reusing-workflows#passing-inputs-and-secrets-to-a-reusable-workflow
+    # allow the shared workflow to access secrets
+    secrets: inherit
