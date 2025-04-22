@@ -20,7 +20,7 @@ file {
 
 class { 'icingadb::redis':
   manage_repos    => true,
-  bind            => $facts[networking][interfaces][eth1][ip],
+  bind            => $facts[networking][ip],
   requirepass     => 'supersecret',
   use_tls         => true,
   tls_cert_file   => '/etc/icingadb-redis/server.crt',
