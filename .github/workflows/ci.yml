@@ -16,7 +16,20 @@ concurrency:
   group: ${{ github.ref_name }}
   cancel-in-progress: true
 
+# Configure secrets here:
+#  https://docs.github.com/en/actions/security-guides/encrypted-secrets
+env:
+  ICINGA_REPO_PASSWORD: '${{ secrets.icinga_repo_password }}'
+  ICINGA_REPO_USER: '${{ secrets.icinga_repo_user }}'
+
 jobs:
   puppet:
-    name: Puppet
-    uses: voxpupuli/gha-puppet/.github/workflows/basic.yml@v3
+    steps:
+      - name: irgendwas mit GITHUB_ENV machen
+        run: |
+          echo "ICINGA_REPO_USER=$ICINGA_REPO_USER" >> $GITHUB_ENV
+          echo "ICINGA_REPO_PASSWORD=$ICINGA_REPO_PASSWORD" >> $GITHUB_ENV
+      - name: Puppet
+        uses: voxpupuli/gha-puppet/.github/workflows/beaker.yml@v3
+        # https://docs.github.com/en/actions/sharing-automations/reusing-workflows#passing-inputs-and-secrets-to-a-reusable-workflow
+        # allow the shared workflow to access secrets

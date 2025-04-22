@@ -1,0 +1,6 @@
+---
+icinga::repos:
+  icinga-stable-release:
+    baseurl: 'https://packages.icinga.com/subscription/rhel/$releasever/release/'
+    username: "%{facts.icinga_repo_user}"
+    password: "%{facts.icinga_repo_password}"

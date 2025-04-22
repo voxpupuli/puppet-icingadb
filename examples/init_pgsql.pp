@@ -13,14 +13,15 @@ postgresql::server::extension { 'icingadb-citext':
   package_name => 'postgresql-contrib',
 }
 
--> class { 'icingadb::redis':
-  manage_repos => true,
-  requirepass  => Sensitive('supersecret'),
-}
-
--> class { 'icingadb':
+class { 'icingadb':
   db_type        => 'pgsql',
   db_password    => Sensitive('supersecret'),
   redis_password => Sensitive('supersecret'),
   import_schema  => true,
+  require        => Postgresql::Server::Db['icingadb'],
+}
+
+class { 'icingadb::redis':
+  manage_repos => true,
+  requirepass  => Sensitive('supersecret'),
 }

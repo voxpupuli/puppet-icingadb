@@ -9,6 +9,8 @@ class { 'mysql::server':
 }
 
 mysql::db { 'icingadb':
+  charset  => 'utf8',
+  collate  => 'utf8_general_ci',
   user     => 'icingadb',
   password => Sensitive('supersecret'),
   host     => 'localhost',
@@ -24,5 +26,5 @@ class { 'icingadb':
   db_password    => Sensitive('supersecret'),
   redis_password => Sensitive('supersecret'),
   import_schema  => true,
-  require        => [Class['icingadb::redis'], Mysql::Db['icingadb']],
+  require        => Mysql::Db['icingadb'],
 }
