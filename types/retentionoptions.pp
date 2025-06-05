@@ -7,4 +7,4 @@ type IcingaDB::RetentionOptions = Hash[
     'flapping','notification','state'
   ],
   Integer[1]
-] 
+]
