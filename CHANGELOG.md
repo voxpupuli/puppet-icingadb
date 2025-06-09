@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.2.0](https://github.com/voxpupuli/puppet-icingadb/tree/v3.2.0) (2025-06-09)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v3.1.1...v3.2.0)
+
+**Implemented enhancements:**
+
+- metadata.json: Add OpenVox [\#50](https://github.com/voxpupuli/puppet-icingadb/pull/50) ([jstraw](https://github.com/jstraw))
+
+**Closed issues:**
+
+- Redis won't start after upgrading to icingadb-redis 7.2.6-2+debian12 [\#47](https://github.com/voxpupuli/puppet-icingadb/issues/47)
+
 ## [v3.1.1](https://github.com/voxpupuli/puppet-icingadb/tree/v3.1.1) (2024-10-18)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v3.1.0...v3.1.1)
