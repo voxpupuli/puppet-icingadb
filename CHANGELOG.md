@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v4.0.0](https://github.com/voxpupuli/puppet-icingadb/tree/v4.0.0) (2025-07-11)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v3.2.0...v4.0.0)
+
+**Breaking changes:**
+
+- Drop EOL Ubuntu 20.04 support [\#62](https://github.com/voxpupuli/puppet-icingadb/pull/62) ([lbetz](https://github.com/lbetz))
+- Drop Fedora EOL 39 and 40 support [\#61](https://github.com/voxpupuli/puppet-icingadb/pull/61) ([lbetz](https://github.com/lbetz))
+
+**Implemented enhancements:**
+
+- Add Fedora 41 support [\#60](https://github.com/voxpupuli/puppet-icingadb/pull/60) ([lbetz](https://github.com/lbetz))
+- Add Fedora 42 support [\#59](https://github.com/voxpupuli/puppet-icingadb/pull/59) ([lbetz](https://github.com/lbetz))
+- Add EL 10 support [\#58](https://github.com/voxpupuli/puppet-icingadb/pull/58) ([lbetz](https://github.com/lbetz))
+- metadata.json: allow puppet/icinga 7.x [\#57](https://github.com/voxpupuli/puppet-icingadb/pull/57) ([lbetz](https://github.com/lbetz))
+
 ## [v3.2.0](https://github.com/voxpupuli/puppet-icingadb/tree/v3.2.0) (2025-06-09)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v3.1.1...v3.2.0)
