@@ -40,7 +40,7 @@ This module supports:
 And requiers:
 
 * [puppetlabs/stdlib] >= 6.6.0 < 10.0.0
-* [icinga/icinga] >= 2.9.0 < 6.0.0
+* [icinga/icinga] >= 2.9.0 < 8.0.0
 
 ### Beginning with icingadb
 
