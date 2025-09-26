@@ -26,12 +26,12 @@ class icingadb::install::db {
     $db_password = $icingadb::db_password
 
     $db_cli_options = icinga::db::connect({
-        type     => $type,
-        host     => $db_host,
-        port     => $db_port,
-        database => $db_name,
-        username => $db_username,
-        password => $db_password,
+      type     => $type,
+      host     => $db_host,
+      port     => $db_port,
+      database => $db_name,
+      username => $db_username,
+      password => $db_password,
     }, $icingadb::db_tls_files + { noverify => $icingadb::db_tls_insecure }, $icingadb::db_use_tls)
 
     if $type == 'pgsql' {

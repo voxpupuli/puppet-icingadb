@@ -33,12 +33,12 @@ class icingadb::redis::config {
     }
 
     $tls_settings = delete_undef_values({
-        port             => if $port != $tls_port { undef } else { 0 },
-        tls_port         => $tls_port,
-        tls_cert_file    => $tls_files['cert_file'],
-        tls_key_file     => $tls_files['key_file'],
-        tls_ca_cert_file => $tls_files['cacert_file'],
-        tls_auth_clients => $tls_auth_clients,
+      port             => if $port != $tls_port { undef } else { 0 },
+      tls_port         => $tls_port,
+      tls_cert_file    => $tls_files['cert_file'],
+      tls_key_file     => $tls_files['key_file'],
+      tls_ca_cert_file => $tls_files['cacert_file'],
+      tls_auth_clients => $tls_auth_clients,
     })
   } else {
     $tls_settings = {}
