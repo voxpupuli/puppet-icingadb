@@ -21,6 +21,10 @@
 # @param manage_packages
 #   Whether to manage the IcingaDB packages.
 #
+# @param manage_selinux
+#   If set to true the icinga selinux package is installed if selinux is enabled. Also requires a
+#   `selinux_package_name` (icinga2::globals) and `manage_packages` has to be set to true.
+#
 # @param redis_host
 #   Redis server to connect.
 #
@@ -135,6 +139,7 @@ class icingadb (
   Boolean                                        $enable                 = true,
   Boolean                                        $manage_repos           = false,
   Boolean                                        $manage_packages        = true,
+  Boolean                                        $manage_selinux         = false,
   Enum['mysql','pgsql']                          $db_type                = 'mysql',
   Stdlib::Host                                   $db_host                = 'localhost',
   Optional[Stdlib::Port]                         $db_port                = undef,
@@ -170,6 +175,12 @@ class icingadb (
   IcingaDB::RetentionOptions                     $retention_options      = {},
 ) {
   require icingadb::globals
+
+  $_selinux = if fact('os.selinux.enabled') and $icingadb::globals::selinux_package_name {
+    $manage_selinux
+  } else {
+    false
+  }
 
   if $manage_repos {
     require icinga::repos
@@ -246,7 +257,9 @@ class icingadb (
   #
   # declarations
   #
-  class { 'icingadb::install': }
+  class { 'icingadb::install':
+    notify => Class['icingadb::service'],
+  }
   -> class { 'icingadb::config':
     notify => Class['icingadb::service'],
   }

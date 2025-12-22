@@ -37,6 +37,7 @@ class icingadb::config {
     group     => $group,
     mode      => '0640',
     content   => $config_content,
+    seltype   => 'icingadb_etc_t',
   }
 
   -> File <| ensure != 'directory' and tag == 'icingadb::config::file' |>

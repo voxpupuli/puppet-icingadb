@@ -58,6 +58,7 @@ The following parameters are available in the `icingadb` class:
 * [`enable`](#-icingadb--enable)
 * [`manage_repos`](#-icingadb--manage_repos)
 * [`manage_packages`](#-icingadb--manage_packages)
+* [`manage_selinux`](#-icingadb--manage_selinux)
 * [`redis_host`](#-icingadb--redis_host)
 * [`redis_port`](#-icingadb--redis_port)
 * [`redis_password`](#-icingadb--redis_password)
@@ -124,6 +125,15 @@ Data type: `Boolean`
 Whether to manage the IcingaDB packages.
 
 Default value: `true`
+
+##### <a name="-icingadb--manage_selinux"></a>`manage_selinux`
+
+Data type: `Boolean`
+
+If set to true the icinga selinux package is installed if selinux is enabled. Also requires a
+`selinux_package_name` (icinga2::globals) and `manage_packages` has to be set to true.
+
+Default value: `false`
 
 ##### <a name="-icingadb--redis_host"></a>`redis_host`
 
@@ -410,6 +420,7 @@ This class loads the default parameters by doing a hiera lookup.
 The following parameters are available in the `icingadb::globals` class:
 
 * [`package_name`](#-icingadb--globals--package_name)
+* [`selinux_package_name`](#-icingadb--globals--selinux_package_name)
 * [`service_name`](#-icingadb--globals--service_name)
 * [`user`](#-icingadb--globals--user)
 * [`group`](#-icingadb--globals--group)
@@ -421,43 +432,53 @@ The following parameters are available in the `icingadb::globals` class:
 
 Data type: `String[1]`
 
+The name of the icingadb package to manage.
 
+##### <a name="-icingadb--globals--selinux_package_name"></a>`selinux_package_name`
+
+Data type: `String[1]`
+
+The name of the icingadb selinux package.
 
 ##### <a name="-icingadb--globals--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
-
+The name of the icingadb service to manage.
 
 ##### <a name="-icingadb--globals--user"></a>`user`
 
 Data type: `String[1]`
 
-
+User as the icingadb process runs.
+CAUTION: This does not manage the user context for the runnig icingadb process!
+The parameter is only used for ownership of files or directories.
 
 ##### <a name="-icingadb--globals--group"></a>`group`
 
 Data type: `String[1]`
 
-
+Group as the icingadb process runs.
+CAUTION: This does not manage the group context for the runnig icingadb process!
+The parameter is only used for group membership of files or directories.
 
 ##### <a name="-icingadb--globals--conf_dir"></a>`conf_dir`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Location of the configuration directory of IcingaDB.
 
 ##### <a name="-icingadb--globals--mysql_db_schema"></a>`mysql_db_schema`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Location of the MySQL database schema for IcingaDB.
 
 ##### <a name="-icingadb--globals--pgsql_db_schema"></a>`pgsql_db_schema`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Location of the PostgreSQL database schema for IcingaDB.
 
 ### <a name="icingadb--redis"></a>`icingadb::redis`
 
@@ -517,6 +538,7 @@ The following parameters are available in the `icingadb::redis` class:
 * [`port`](#-icingadb--redis--port)
 * [`manage_repos`](#-icingadb--redis--manage_repos)
 * [`manage_packages`](#-icingadb--redis--manage_packages)
+* [`manage_selinux`](#-icingadb--redis--manage_selinux)
 * [`requirepass`](#-icingadb--redis--requirepass)
 * [`use_tls`](#-icingadb--redis--use_tls)
 * [`tls_port`](#-icingadb--redis--tls_port)
@@ -577,6 +599,15 @@ Data type: `Boolean`
 Whether or not to manage the IcingaDB packages.
 
 Default value: `true`
+
+##### <a name="-icingadb--redis--manage_selinux"></a>`manage_selinux`
+
+Data type: `Boolean`
+
+If set to true the icinga selinux package is installed if selinux is enabled. Also requires a
+`selinux_package_name` (icinga2::redis::globals) and `manage_packages` has to be set to true.
+
+Default value: `false`
 
 ##### <a name="-icingadb--redis--requirepass"></a>`requirepass`
 
@@ -677,6 +708,7 @@ This class loads the default parameters by doing a hiera lookup.
 The following parameters are available in the `icingadb::redis::globals` class:
 
 * [`package_name`](#-icingadb--redis--globals--package_name)
+* [`selinux_package_name`](#-icingadb--redis--globals--selinux_package_name)
 * [`service_name`](#-icingadb--redis--globals--service_name)
 * [`user`](#-icingadb--redis--globals--user)
 * [`group`](#-icingadb--redis--globals--group)
@@ -690,55 +722,65 @@ The following parameters are available in the `icingadb::redis::globals` class:
 
 Data type: `String[1]`
 
+The name of the icingadb-redis package to manage.
 
+##### <a name="-icingadb--redis--globals--selinux_package_name"></a>`selinux_package_name`
+
+Data type: `String[1]`
+
+The name of the icingadb-redis selinux package.
 
 ##### <a name="-icingadb--redis--globals--service_name"></a>`service_name`
 
 Data type: `String[1]`
 
-
+The name of the icingadb-redis service to manage.
 
 ##### <a name="-icingadb--redis--globals--user"></a>`user`
 
 Data type: `String[1]`
 
-
+User as the icingadb-redis process runs.
+CAUTION: This does not manage the user context for the runnig icingadb-redis process!
+The parameter is only used for ownership of files or directories.
 
 ##### <a name="-icingadb--redis--globals--group"></a>`group`
 
 Data type: `String[1]`
 
-
+Group as the icingadb-redis process runs.
+CAUTION: This does not manage the group context for the runnig icingadb-redis process!
+The parameter is only used for group membership of files or directories.
 
 ##### <a name="-icingadb--redis--globals--redis_bin"></a>`redis_bin`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Redis binary
 
 ##### <a name="-icingadb--redis--globals--conf_dir"></a>`conf_dir`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Directory of the IcingaDB Redis config files.
 
 ##### <a name="-icingadb--redis--globals--work_dir"></a>`work_dir`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Directory for the IcingaDB Redis working data.
 
 ##### <a name="-icingadb--redis--globals--run_dir"></a>`run_dir`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Location to store the runtime information.
 
 ##### <a name="-icingadb--redis--globals--log_dir"></a>`log_dir`
 
 Data type: `Stdlib::Absolutepath`
 
-
+Directory for the log files.
 
 ## Data types
 
