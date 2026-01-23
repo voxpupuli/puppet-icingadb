@@ -37,10 +37,11 @@ This module supports:
 
 * [puppet] >= 7.9.0 < 9.0.0
 
-And requiers:
+And requires:
 
 * [puppetlabs/stdlib] >= 6.6.0 < 10.0.0
 * [icinga/icinga] >= 2.9.0 < 8.0.0
+* [puppet/redis] >= 8.2.0 < 13.0.0
 
 ### Beginning with icingadb
 
