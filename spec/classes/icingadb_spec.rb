@@ -18,7 +18,7 @@ describe 'icingadb' do
             {
               'owner' => 'icingadb',
               'group' => 'icingadb',
-              'mode' => '0640'
+              'mode' => '0640',
             },
           ).with_content(%r{database:\n  type: mysql\n  host: localhost\n  database: icingadb\n  user: icingadb\n  password: supersecret\nredis:\n  host: localhost\n  port: 6380\n})
         }
@@ -59,7 +59,7 @@ describe 'icingadb' do
             {
               'owner' => 'icingadb',
               'group' => 'icingadb',
-              'mode' => '0640'
+              'mode' => '0640',
             },
           ).with_content(%r{redis:\n  host: redis.example.org\n  port: 4711\n  password: supersecret})
         }
