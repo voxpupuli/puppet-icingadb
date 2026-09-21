@@ -42,9 +42,10 @@ class icingadb::redis::config {
     )
 
     icinga::cert { 'icingadb-redis tls files for the database client connect':
-      owner => $user,
-      group => $group,
-      args  => $tls_files,
+      owner   => $user,
+      group   => $group,
+      args    => $tls_files,
+      seltype => 'redis_conf_t',
     }
 
     $tls_settings = delete_undef_values({

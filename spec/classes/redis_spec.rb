@@ -15,6 +15,45 @@ describe 'icingadb::redis' do
         it { is_expected.to contain_service('icingadb-redis').with('ensure' => 'running', 'enable' => true) }
       end
 
+      context 'with SELinux enabled and TLS' do
+        let(:facts) do
+          os_facts.merge(os: os_facts[:os].merge(selinux: { enabled: true }))
+        end
+
+        let(:params) do
+          {
+            manage_selinux: true,
+            port: 6380,
+            use_tls: true,
+            tls_port: 6381,
+            tls_key: 'redis-key',
+            tls_cert: 'redis-cert',
+            tls_cacert: 'redis-ca',
+          }
+        end
+
+        it {
+          is_expected.to contain_selinux__port('icingadb-redis-tcp-6380').with(
+            'seltype' => 'redis_port_t',
+            'protocol' => 'tcp',
+            'port' => 6380,
+          )
+        }
+
+        it {
+          is_expected.to contain_selinux__port('icingadb-redis-tcp-6381').with(
+            'seltype' => 'redis_port_t',
+            'protocol' => 'tcp',
+            'port' => 6381,
+          )
+        }
+
+        it {
+          is_expected.to contain_icinga__cert('icingadb-redis tls files for the database client connect')
+            .with_seltype('redis_conf_t')
+        }
+      end
+
       context 'with ensure => stopped, enable => false, manage_repo => true, manage_package => false' do
         let(:params) do
           {
