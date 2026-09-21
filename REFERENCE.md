@@ -131,7 +131,7 @@ Default value: `true`
 Data type: `Boolean`
 
 If set to true the icinga selinux package is installed if selinux is enabled. Also requires a
-`selinux_package_name` (icinga2::globals) and `manage_packages` has to be set to true.
+`selinux_package_name` (icingadb::globals) and `manage_packages` has to be set to true.
 
 Default value: `false`
 

@@ -13,8 +13,9 @@ class icingadb::redis::config {
   $use_tls          = $icingadb::redis::use_tls
   $tls_port         = $icingadb::redis::tls_port
   $tls_auth_clients = $icingadb::redis::tls_auth_clients
+  $manage_selinux   = $icingadb::redis::_selinux
 
-  if $icingadb::redis::_selinux {
+  if $manage_selinux {
     $selinux_ports = if $use_tls and $tls_port != $port {
       [$port, $tls_port]
     } else {
