@@ -10,19 +10,31 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 6.6.0 < 10.0.0"
+      "version_requirement": ">= 6.6.0 < 11.0.0"
     },
     {
       "name": "puppet/redis",
-      "version_requirement": ">= 8.2.0 < 12.0.0"
+      "version_requirement": ">= 8.2.0 < 14.0.0"
     },
     {
       "name": "puppet/icinga",
+<<<<<<< Updated upstream
       "version_requirement": ">= 3.0.0 < 8.0.0"
     },
     {
       "name": "puppet/selinux",
       "version_requirement": ">= 5.0.0 < 6.0.0"
+=======
+<<<<<<< Updated upstream
+      "version_requirement": ">= 3.0.0 < 9.0.0"
+=======
+      "version_requirement": ">= 8.0.0 < 9.0.0"
+    },
+    {
+      "name": "puppet/selinux",
+      "version_requirement": ">= 5.0.0 < 7.0.0"
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
   ],
   "operatingsystem_support": [
@@ -68,7 +80,8 @@
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
         "41",
-        "42"
+        "42",
+        "43"
       ]
     }
   ],
