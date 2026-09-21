@@ -15,9 +15,10 @@ class icingadb::redis::config {
   $tls_auth_clients = $icingadb::redis::tls_auth_clients
 
   if $icingadb::redis::_selinux {
-    $selinux_ports = [$port]
-    if $use_tls and $tls_port != $port {
-      $selinux_ports.append($tls_port)
+    $selinux_ports = if $use_tls and $tls_port != $port {
+      [$port, $tls_port]
+    } else {
+      [$port]
     }
 
     $selinux_ports.each |$selinux_port| {

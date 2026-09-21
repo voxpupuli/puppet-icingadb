@@ -6,6 +6,8 @@
 /Gemfile.local
 /vendor/
 /.vendor/
+/.devcontainer/
+/devcontainer.json
 /spec/fixtures/manifests/
 /spec/fixtures/modules/
 /.vagrant/

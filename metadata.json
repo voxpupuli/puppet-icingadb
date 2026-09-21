@@ -18,23 +18,11 @@
     },
     {
       "name": "puppet/icinga",
-<<<<<<< Updated upstream
-      "version_requirement": ">= 3.0.0 < 8.0.0"
-    },
-    {
-      "name": "puppet/selinux",
-      "version_requirement": ">= 5.0.0 < 6.0.0"
-=======
-<<<<<<< Updated upstream
       "version_requirement": ">= 3.0.0 < 9.0.0"
-=======
-      "version_requirement": ">= 8.0.0 < 9.0.0"
     },
     {
       "name": "puppet/selinux",
       "version_requirement": ">= 5.0.0 < 7.0.0"
->>>>>>> Stashed changes
->>>>>>> Stashed changes
     }
   ],
   "operatingsystem_support": [
