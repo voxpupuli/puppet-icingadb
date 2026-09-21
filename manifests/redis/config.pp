@@ -1,8 +1,8 @@
-# @summary 
+# @summary
 #   Configures IcingaDB Redis server
 #
 # @api private
-#   
+#
 class icingadb::redis::config {
   assert_private()
 
@@ -13,6 +13,21 @@ class icingadb::redis::config {
   $use_tls          = $icingadb::redis::use_tls
   $tls_port         = $icingadb::redis::tls_port
   $tls_auth_clients = $icingadb::redis::tls_auth_clients
+
+  if $icingadb::redis::_selinux {
+    $selinux_ports = [$port]
+    if $use_tls and $tls_port != $port {
+      $selinux_ports.append($tls_port)
+    }
+
+    $selinux_ports.each |$selinux_port| {
+      selinux::port { "icingadb-redis-tcp-${selinux_port}":
+        seltype  => 'redis_port_t',
+        protocol => 'tcp',
+        port     => $selinux_port,
+      }
+    }
+  }
 
   if $use_tls {
     $tls_files = icinga::cert::files(

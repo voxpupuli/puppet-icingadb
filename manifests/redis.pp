@@ -23,7 +23,7 @@
 #     tls_cacert_file  => '/etc/icingadb-redis/ca.crt',
 #   }
 #
-# @example Bind Redis for encrypted only connections to 6380 on localhost and the main interface. Also force a valid client certificate for authentication. 
+# @example Bind Redis for encrypted only connections to 6380 on localhost and the main interface. Also force a valid client certificate for authentication.
 #   class { 'icingadb::redis':
 #     bind             => ['127.0.0.1', $::ipaddress],
 #     use_tls          => true,
@@ -119,7 +119,7 @@ class icingadb::redis (
   require icingadb::redis::globals
 
   $_selinux = if fact('os.selinux.enabled') and $icingadb::redis::globals::selinux_package_name {
-    $manage_selinux
+    $manage_selinux and $manage_packages
   } else {
     false
   }
@@ -131,6 +131,7 @@ class icingadb::redis (
   class { 'icingadb::redis::install':
     notify => Class['icingadb::redis::service'],
   }
+
   -> class { 'icingadb::redis::config': }
   ~> class { 'icingadb::redis::service': }
 

@@ -24,6 +24,17 @@
 
 This module manages the IcingaDB Redis server and the IcingaDB itself.
 
+### SELinux
+
+When `manage_selinux` is enabled and package management is enabled, the module
+registers the configured Redis TCP ports with the `redis_port_t` SELinux type.
+The SELinux policy package is managed by the module in this mode.
+
+When a Redis port is changed, the new port mapping is added but the previous
+mapping is not removed automatically. This avoids deleting a port mapping that
+may have been managed outside this module. Remove obsolete mappings separately
+if they are no longer needed.
+
 ## Setup
 
 ### What the IcingaDB Puppet module supports
