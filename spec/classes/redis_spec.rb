@@ -16,9 +16,7 @@ describe 'icingadb::redis' do
       end
 
       context 'with SELinux enabled and TLS' do
-        let(:facts) do
-          os_facts.merge(os: os_facts[:os].merge(selinux: { enabled: true }))
-        end
+        let(:facts) { override_facts(super(), os: { selinux: { enabled: true } }) }
 
         let(:params) do
           {
