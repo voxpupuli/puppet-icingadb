@@ -257,9 +257,7 @@ class icingadb (
   #
   # declarations
   #
-  class { 'icingadb::install':
-    notify => Class['icingadb::service'],
-  }
+  class { 'icingadb::install': }
   -> class { 'icingadb::config':
     notify => Class['icingadb::service'],
   }
