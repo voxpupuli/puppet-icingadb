@@ -19,15 +19,17 @@ class icingadb::config {
   }
 
   icinga::cert { 'icingadb tls files for the database client connect':
-    owner => $user,
-    group => $group,
-    args  => $db_tls_files,
+    owner   => $user,
+    group   => $group,
+    args    => $db_tls_files,
+    seltype => 'icingadb_etc_t',
   }
 
   icinga::cert { 'icingadb tls files for the redis client connect':
-    owner => $user,
-    group => $group,
-    args  => $redis_tls_files,
+    owner   => $user,
+    group   => $group,
+    args    => $redis_tls_files,
+    seltype => 'icingadb_etc_t',
   }
 
   file { "${conf_dir}/config.yml":
@@ -37,6 +39,7 @@ class icingadb::config {
     group     => $group,
     mode      => '0640',
     content   => $config_content,
+    seltype   => 'icingadb_etc_t',
   }
 
   -> File <| ensure != 'directory' and tag == 'icingadb::config::file' |>

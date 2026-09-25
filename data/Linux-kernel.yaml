@@ -1,5 +1,6 @@
 ---
 icingadb::globals::package_name: icingadb
+icingadb::globals::selinux_package_name: icingadb-selinux
 icingadb::globals::user: icingadb
 icingadb::globals::group: icingadb
 icingadb::globals::service_name: icingadb
@@ -8,6 +9,7 @@ icingadb::globals::mysql_db_schema: /usr/share/icingadb/schema/mysql/schema.sql
 icingadb::globals::pgsql_db_schema: /usr/share/icingadb/schema/pgsql/schema.sql
 
 icingadb::redis::globals::package_name: icingadb-redis
+icingadb::redis::globals::selinux_package_name: icingadb-redis-selinux
 icingadb::redis::globals::service_name: icingadb-redis
 icingadb::redis::globals::user: icingadb-redis
 icingadb::redis::globals::group: icingadb-redis

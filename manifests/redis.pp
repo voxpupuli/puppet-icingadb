@@ -23,7 +23,7 @@
 #     tls_cacert_file  => '/etc/icingadb-redis/ca.crt',
 #   }
 #
-# @example Bind Redis for encrypted only connections to 6380 on localhost and the main interface. Also force a valid client certificate for authentication. 
+# @example Bind Redis for encrypted only connections to 6380 on localhost and the main interface. Also force a valid client certificate for authentication.
 #   class { 'icingadb::redis':
 #     bind             => ['127.0.0.1', $::ipaddress],
 #     use_tls          => true,
@@ -52,6 +52,10 @@
 #
 # @param manage_packages
 #   Whether or not to manage the IcingaDB packages.
+#
+# @param manage_selinux
+#   If set to true the icinga selinux package is installed if selinux is enabled. Also requires a
+#   `selinux_package_name` (icinga2::redis::globals) and `manage_packages` has to be set to true.
 #
 # @param requirepass
 #   Require clients to issue AUTH <PASSWORD> before processing
@@ -97,6 +101,7 @@ class icingadb::redis (
   Boolean                                      $enable           = true,
   Boolean                                      $manage_repos     = false,
   Boolean                                      $manage_packages  = true,
+  Boolean                                      $manage_selinux   = false,
   Variant[Stdlib::Host,Array[Stdlib::Host]]    $bind             = ['127.0.0.1', '::1'],
   Stdlib::Port                                 $port             = 6380,
   Optional[Icinga::Secret]                     $requirepass      = undef,
@@ -113,11 +118,20 @@ class icingadb::redis (
 ) {
   require icingadb::redis::globals
 
+  $_selinux = if fact('os.selinux.enabled') and $icingadb::redis::globals::selinux_package_name {
+    $manage_selinux and $manage_packages
+  } else {
+    false
+  }
+
   if $manage_repos {
     require icinga::repos
   }
 
-  class { 'icingadb::redis::install': }
+  class { 'icingadb::redis::install':
+    notify => Class['icingadb::redis::service'],
+  }
+
   -> class { 'icingadb::redis::config': }
   ~> class { 'icingadb::redis::service': }
 

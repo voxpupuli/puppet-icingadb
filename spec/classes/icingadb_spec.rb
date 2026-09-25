@@ -28,6 +28,32 @@ describe 'icingadb' do
         it { is_expected.to contain_service('icingadb').with('ensure' => 'running', 'enable' => true) }
       end
 
+      context 'with TLS certificates' do
+        let(:params) do
+          {
+            db_password: 'supersecret',
+            db_use_tls: true,
+            db_tls_key: 'db-key',
+            db_tls_cert: 'db-cert',
+            db_tls_cacert: 'db-ca',
+            redis_use_tls: true,
+            redis_tls_key: 'redis-key',
+            redis_tls_cert: 'redis-cert',
+            redis_tls_cacert: 'redis-ca',
+          }
+        end
+
+        it {
+          is_expected.to contain_icinga__cert('icingadb tls files for the database client connect')
+            .with_seltype('icingadb_etc_t')
+        }
+
+        it {
+          is_expected.to contain_icinga__cert('icingadb tls files for the redis client connect')
+            .with_seltype('icingadb_etc_t')
+        }
+      end
+
       context 'with ensure => stopped, enable => false, manage_repo => true, manage_package => false' do
         let(:params) do
           {
