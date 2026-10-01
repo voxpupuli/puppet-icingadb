@@ -52,7 +52,6 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "11",
         "12",
         "13"
       ]
@@ -61,13 +60,15 @@
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "22.04",
-        "24.04"
+        "24.04",
+        "26.04"
       ]
     },
     {
       "operatingsystem": "Fedora",
       "operatingsystemrelease": [
-        "43"
+        "43",
+        "44"
       ]
     }
   ],
