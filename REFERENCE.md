@@ -39,7 +39,7 @@ Puppet class to manage IcingaDB.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 class { 'icingadb':
@@ -828,4 +828,3 @@ Hash[Enum[
     'flapping','notification','state'
   ], Integer[1]]
 ```
-
