@@ -9,7 +9,11 @@ describe 'icingadb', if: fact('os.family') == 'Debian' do
 
   it_behaves_like 'an idempotent resource' do
     let(:manifest) do
+      # puppetlabs-postgresql 10.8.0 has no default version for Ubuntu 26.04
+      pg_globals = (fact('os.release.major') == '26.04') ? "class { 'postgresql::globals': version => '18' }" : ''
       <<~PUPPET
+        #{pg_globals}
+
         class { 'icinga::repos':
           manage_stable => true,
         }
