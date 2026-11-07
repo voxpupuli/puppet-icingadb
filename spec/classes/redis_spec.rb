@@ -13,6 +13,64 @@ describe 'icingadb::redis' do
         it { is_expected.to contain_package('icingadb-redis') }
         it { is_expected.to contain_redis__instance('icingadb-redis').with('manage_service_file' => false) }
         it { is_expected.to contain_service('icingadb-redis').with('ensure' => 'running', 'enable' => true) }
+        it { is_expected.to contain_file('/var/lib/icingadb-redis').without_seltype }
+        it { is_expected.to contain_file('/etc/icingadb-redis/icingadb-redis.conf.puppet').without_seltype }
+      end
+
+      context 'with SELinux management enabled' do
+        let(:facts) { override_facts(super(), os: { selinux: { enabled: true } }) }
+        let(:params) { { manage_selinux: true } }
+
+        it {
+          is_expected.to contain_file('/var/lib/icingadb-redis')
+            .with_ensure('directory')
+            .with_seltype('redis_var_lib_t')
+        }
+
+        it {
+          is_expected.to contain_file('/etc/icingadb-redis/icingadb-redis.conf.puppet')
+            .with_ensure('file')
+            .with_seltype('redis_conf_t')
+        }
+
+        context 'with a custom Redis working directory' do
+          let(:pre_condition) do
+            "class { 'icingadb::redis::globals': work_dir => '/srv/icingadb-redis' }"
+          end
+
+          it {
+            is_expected.to contain_file('/srv/icingadb-redis')
+              .with_ensure('directory')
+              .with_seltype('redis_var_lib_t')
+          }
+        end
+
+        context 'with a custom Redis configuration directory and service name' do
+          let(:pre_condition) do
+            "class { 'icingadb::redis::globals': conf_dir => '/srv/redis-config', service_name => 'custom-redis' }"
+          end
+
+          it {
+            is_expected.to contain_file('/srv/redis-config/custom-redis.conf.puppet')
+              .with_ensure('file')
+              .with_seltype('redis_conf_t')
+          }
+        end
+
+        context 'without package management' do
+          let(:params) { { manage_selinux: true, manage_packages: false } }
+
+          it { is_expected.to contain_file('/var/lib/icingadb-redis').without_seltype }
+          it { is_expected.to contain_file('/etc/icingadb-redis/icingadb-redis.conf.puppet').without_seltype }
+        end
+      end
+
+      context 'with SELinux disabled' do
+        let(:facts) { override_facts(super(), os: { selinux: { enabled: false } }) }
+        let(:params) { { manage_selinux: true } }
+
+        it { is_expected.to contain_file('/var/lib/icingadb-redis').without_seltype }
+        it { is_expected.to contain_file('/etc/icingadb-redis/icingadb-redis.conf.puppet').without_seltype }
       end
 
       context 'with SELinux enabled and TLS' do
