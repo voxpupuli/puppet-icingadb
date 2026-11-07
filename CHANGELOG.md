@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.0.1](https://github.com/voxpupuli/puppet-icingadb/tree/v5.0.1) (2026-11-07)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v5.0.0...v5.0.1)
+
+**Implemented enhancements:**
+
+- Update requirements to allow OpenVox 9 [\#85](https://github.com/voxpupuli/puppet-icingadb/pull/85) ([sebastianrakel](https://github.com/sebastianrakel))
+
+**Fixed bugs:**
+
+- Set SELinux labels for Redis files [\#88](https://github.com/voxpupuli/puppet-icingadb/pull/88) ([lbetz](https://github.com/lbetz))
+
 ## [v5.0.0](https://github.com/voxpupuli/puppet-icingadb/tree/v5.0.0) (2026-10-01)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-icingadb/compare/v4.0.0...v5.0.0)
@@ -18,9 +30,9 @@ These should not affect the functionality of the module.
 
 **Implemented enhancements:**
 
+- metadata.json: Allow puppet-redis 12.x [\#75](https://github.com/voxpupuli/puppet-icingadb/pull/75) ([sagepe](https://github.com/sagepe))
 - Add Ubuntu 26.04 support [\#83](https://github.com/voxpupuli/puppet-icingadb/pull/83) ([lbetz](https://github.com/lbetz))
 - Add Fedora 44 support [\#82](https://github.com/voxpupuli/puppet-icingadb/pull/82) ([lbetz](https://github.com/lbetz))
-- metadata.json: Allow puppet-redis 12.x [\#75](https://github.com/voxpupuli/puppet-icingadb/pull/75) ([sagepe](https://github.com/sagepe))
 - Add support for Fedora 43 [\#71](https://github.com/voxpupuli/puppet-icingadb/pull/71) ([lbetz](https://github.com/lbetz))
 - Support Puppet 8 [\#70](https://github.com/voxpupuli/puppet-icingadb/pull/70) ([lbetz](https://github.com/lbetz))
 - Add support for Debian 13 [\#66](https://github.com/voxpupuli/puppet-icingadb/pull/66) ([lbetz](https://github.com/lbetz))
