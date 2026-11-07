@@ -16,6 +16,14 @@ class icingadb::redis::config {
   $manage_selinux   = $icingadb::redis::_selinux
 
   if $manage_selinux {
+    File <| title == $icingadb::redis::globals::work_dir |> {
+      seltype => 'redis_var_lib_t',
+    }
+
+    File <| title == "${conf_dir}/${icingadb::redis::globals::service_name}.conf.puppet" |> {
+      seltype => 'redis_conf_t',
+    }
+
     $selinux_ports = if $use_tls and $tls_port != $port {
       [$port, $tls_port]
     } else {
